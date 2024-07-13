@@ -15,12 +15,14 @@
             position: relative;
             overflow: auto;
             transition: background-image 0.5s ease-in-out;
+            css display: flex;
         }
 
         #header {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 10px 20px;
             position: sticky;
+            top: 0; /* Stick to the top of the viewport */
             width: 100%;
             z-index: 1000;
             display: flex;
@@ -46,14 +48,26 @@
             margin-right: 50px;
         }
 
-        #header .toggle-switch {
+        .toggle-switch {
             display: flex;
             align-items: center;
             font-size: 16px;
         }
 
-        #header .toggle-switch input {
-            margin-left: 10px;
+        .toggle-switch a {
+            color: #4CAF50;
+            text-decoration: underline; /* Double underline removed */
+        }
+
+        .night-button {
+        }
+
+        .logout-button {
+        }
+
+        .logout-button a {
+            color: #4CAF50;
+            text-decoration: underline; /* Double underline removed */
         }
 
         #map {
@@ -172,6 +186,48 @@
         .video-overlay.hidden {
             display: none;
         }
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: transparent;
+/*            background-color: rgba(0, 0, 0, 0.8);*/
+            color: transparent;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+        }
+
+        .music-player audio {
+            width: 500px;
+            height: 20px;
+            display: block;
+            margin-bottom: 5px;
+            background-color: transparent;
+        }
+
+        .music-player button {
+        background-color: transparent;
+
+/*            background-color: #4CAF50;*/
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-right: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .music-player button:hover {
+                background-color: transparent;
+
+/*            background-color: #45a049;*/
+        }
 
         @keyframes pulse {
             0% {
@@ -245,10 +301,13 @@
         <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
         <h1>Welcome to Los Santos</h1>
         <div class="toggle-switch">
-            <a href="/video1" style="color: #4CAF50; text-decoration: double; margin-left: 550px;">Video Map</a>
+            <a href="/video1" style="color: #4CAF50; text-decoration: double; margin-right: 10px;">Video Map</a>
         </div>
         <div class="night-button">
-            <a href="#" style="color: #4CAF50; text-decoration: double; margin-right: 100px;" onclick="playDayVideo()">Day</a>
+            <a href="#" style="color: #4CAF50; text-decoration: double; margin-right: -990px;" onclick="playDayVideo()">Day</a>
+        </div>
+        <div class="logout-button">
+            <a href="/logout" style="color: #4CAF50; text-decoration: double; margin-right: 70px;">Logout</a>
         </div>
     </div>
 
@@ -284,7 +343,7 @@
         <!-- Hidden video elements -->
         <div id="franklin-video" class="video-overlay hidden">
             <video autoplay>
-                <source src="/static/videos/introclip1.mp4" type="video/mp4">
+                <source src="/static/videos/introclip4.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -309,6 +368,14 @@
                 Your browser does not support the video tag.
             </video>
         </div>
+
+        <div class="music-player">
+            <audio controls>
+                <source src="/static/music/music1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <!-- <button onclick="toggleMusic()">Toggle Music</button> -->
+        </div>
     </div>
 
     <script>
@@ -324,31 +391,44 @@
             characterBox.classList.add('active');
         }
 
-        function playVideo(videoId, redirectUrl) {
-            const videoOverlay = document.getElementById(videoId);
-            const video = videoOverlay.querySelector('video');
+function playVideo(videoId, redirectUrl) {
+    const videoOverlay = document.getElementById(videoId);
+    const video = videoOverlay.querySelector('video');
 
-            // Show the video overlay
-            videoOverlay.classList.remove('hidden');
+    // Mute the video
+    video.muted = true;
 
-            // Play the video from the beginning each time it's shown
-            video.currentTime = 0; // Reset video to start
-            video.play();
+    // Show the video overlay
+    videoOverlay.classList.remove('hidden');
 
-            // Redirect to the chat page after the video ends
-            video.onended = function() {
-                videoOverlay.classList.add('hidden');
-                window.location.href = redirectUrl;
-            };
+    // Play the video from the beginning each time it's shown
+    video.currentTime = 0; // Reset video to start
+    video.play();
 
-            // Prevent the default link behavior
-            return false;
+    // Add event listener to skip video when clicked or tapped
+    videoOverlay.addEventListener('click', function() {
+        // Redirect to the chat page
+        window.location.href = redirectUrl;
+    });
+
+    // Redirect to the chat page after the video ends (if not clicked or tapped)
+    video.onended = function() {
+        if (!videoOverlay.classList.contains('hidden')) {
+            videoOverlay.classList.add('hidden');
+            window.location.href = redirectUrl;
         }
+    };
+
+    // Prevent the default link behavior
+    return false;
+}
+
+
 
         function playDayVideo() {
             const dayVideoOverlay = document.getElementById('day-video');
             const dayVideo = dayVideoOverlay.querySelector('video');
-
+            dayVideo.muted=true;
             // Show the day video overlay
             dayVideoOverlay.classList.remove('hidden');
 
@@ -364,6 +444,18 @@
 
             // Prevent the default link behavior
             return false;
+        }
+        function toggleMusic() {
+            var audio = document.querySelector('.music-player audio');
+            var button = document.querySelector('.music-player button');
+
+            if (audio.paused) {
+                audio.play();
+                button.textContent = 'Pause Music';
+            } else {
+                audio.pause();
+                button.textContent = 'Play Music';
+            }
         }
     </script>
 </body>

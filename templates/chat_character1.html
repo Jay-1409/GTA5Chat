@@ -15,6 +15,56 @@
             color: white;
         }
 
+        #header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: top 0.5s;
+        }
+
+        #header img {
+            width: 60px;
+            height: auto;
+            margin-right: 10px;
+            vertical-align: middle;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #header img:hover {
+            transform: rotate(360deg);
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 24px;
+            margin-right: 50px;
+        }
+
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .toggle-switch a {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        .logout-button {
+        }
+
+        .logout-button a {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
         #chatbox {
             position: fixed;
             bottom: 0;
@@ -68,6 +118,18 @@
 </head>
 
 <body>
+    <div id="header">
+    <a href="/">
+        <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
+    </a>        
+    <h1>Welcome to Los Santos</h1>
+        <div class="toggle-switch">
+            <a href="/video1" style="color: #4CAF50; text-decoration: double; margin-right: 10px;">Video Map</a>
+        </div>
+        <div class="logout-button">
+            <a href="/logout" style="color: #4CAF50; text-decoration: double; margin-right: 70px;">Logout</a>
+        </div>
+    </div>
     <h1>Chat with {{ character }}</h1>
     <div id="chatbox">
         <div id="messages">
@@ -114,6 +176,20 @@
             })
             .catch(error => console.error('Error sending message:', error));
         }
+
+        // Hide header after 3 seconds
+        setTimeout(() => {
+            document.getElementById('header').style.top = '-60px';
+        }, 3000);
+
+        // Show header when mouse moves to the top
+        document.addEventListener('mousemove', (event) => {
+            if (event.clientY <= 60) {
+                document.getElementById('header').style.top = '0';
+            } else {
+                document.getElementById('header').style.top = '-60px';
+            }
+        });
     </script>
 </body>
 

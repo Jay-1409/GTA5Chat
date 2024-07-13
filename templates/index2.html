@@ -50,14 +50,25 @@
             animation: fadeIn 1s ease-in-out;
         }
 
-        #header .toggle-switch {
+        .toggle-switch {
             display: flex;
             align-items: center;
             font-size: 16px;
         }
 
-        #header .toggle-switch input {
-            margin-left: 10px;
+        .toggle-switch a {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        .night-button {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        .logout-button {
+            color: #4CAF50;
+            text-decoration: underline;
         }
 
         #map {
@@ -174,10 +185,50 @@
         }
 
         .night-button:hover {
-            animation: pulse 1s ;
-/*            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #4CAF50, 0 0 25px #4CAF50, 0 0 30px #4CAF50, 0 0 35px #4CAF50;*/
+            animation: pulse 1s;
+        }
+  .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: transparent;
+/*            background-color: rgba(0, 0, 0, 0.8);*/
+            color: transparent;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
         }
 
+        .music-player audio {
+                    width: 500px;
+                    height: 20px;
+                    display: block;
+                    margin-bottom: 5px;
+                    background-color: transparent;
+                }
+
+                .music-player button {
+                background-color: transparent;
+
+        /*            background-color: #4CAF50;*/
+                    color: white;
+                    border: none;
+                    padding: 8px 16px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 14px;
+                    margin-right: 5px;
+                    cursor: pointer;
+                    border-radius: 3px;
+                }
+
+        .music-player button:hover {
+                background-color: transparent;
+
+/*            background-color: #45a049;*/
+        }
         @keyframes float {
             0% {
                 transform: translateY(0);
@@ -233,7 +284,7 @@
             }
             to {
                 transform: translateY(0);
-                opacity: 1;
+                opacity: 1);
             }
         }
 
@@ -252,52 +303,53 @@
         <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
         <h1>Welcome to Los Santos</h1>
         <div class="toggle-switch">
-            <a href="/video1" style="color: #4CAF50; text-decoration: double; margin-left: 550px;">Video Map</a>
+            <a href="/video1" style="color: #4CAF50; text-decoration: double; margin-right: 10px;">Video Map</a>
         </div>
-        <div class="toggle-switch night-button">
-            <a href="#" style="color: #4CAF50; text-decoration: double; margin-right: 100px;" onclick="playNightVideo()">Night</a>
+        <div class="night-button">
+            <a href="#" style="color: #4CAF50; text-decoration: double; margin-right: -990px;" onclick="playDayVideo()">Night</a>
+        </div>
+        <div class="logout-button">
+            <a href="/logout" style="color: #4CAF50; text-decoration: double; margin-right: 70px;">Logout</a>
         </div>
     </div>
 
     <div id="map">
         <!-- Example logos (replace with actual positions) -->
-        <div class="logo" style="top: 410px; left: 775px; background-image: url('/static/images/franklinlogo.jpeg');" onclick="openCharacterBox('franklin')"></div>
-        <div class="logo" style="top: 200px; left: 700px; background-image: url('/static/images/micheallogo.jpeg');" onclick="openCharacterBox('michael')"></div>
-        <div class="logo" style="top: 150px; left: 900px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="openCharacterBox('trevor')"></div>
+        <div class="logo" style="top: 410px; left: 775px; background-image: url('/static/images/franklinlogo.jpeg');" onclick="showCharacterBox('character1')"></div>
+        <div class="logo" style="top: 200px; left: 700px; background-image: url('/static/images/micheallogo.jpeg');" onclick="showCharacterBox('character2')"></div>
+        <div class="logo" style="top: 150px; left: 900px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="showCharacterBox('character3')"></div>
         <!-- Add more logos as needed -->
 
         <!-- Character boxes -->
-        <div id="franklin-box" class="character-box">
-            <img class="character-img" src="/static/images/franklinfront.jpeg" alt="Franklin Clinton">
-            <div class="character-name">Franklin Clinton</div>
-            <div class="character-description">
-                Franklin is a young and ambitious street hustler, working for a corrupt Armenian car salesman.
-            </div>
+        <div id="character1" class="character-box">
+            <img src="/static/images/franklinfront.jpeg" alt="Franklin" class="character-img">
+            <div class="character-name">Franklin</div>
+            <div class="character-description">Franklin is a young and ambitious street hustler, working for a corrupt Armenian car salesman.</div>
             <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character1')">Chat with Franklin</div>
         </div>
 
-        <div id="michael-box" class="character-box">
-            <img class="character-img" src="/static/images/michealfront.jpeg" alt="Michael De Santa">
-            <div class="character-name">Michael De Santa</div>
-            <div class="character-description">
-                Michael, formerly known as Michael Townley, is a professional ex-con whose retirement is a lot less rosy than he hoped it would be.
-            </div>
+        <div id="character2" class="character-box">
+            <img src="/static/images/michealfront.jpeg" alt="Michael" class="character-img">
+            <div class="character-name">Michael</div>
+            <div class="character-description">Michael, formerly known as Michael Townley, is a professional ex-con whose life isn't what he hoped it would be.</div>
             <div class="chat-link" onclick="playVideo('michael-video', '/chat/character2')">Chat with Michael</div>
         </div>
 
-        <div id="trevor-box" class="character-box">
-            <img class="character-img" src="/static/images/trevorfront.jpeg" alt="Trevor Philips">
-            <div class="character-name">Trevor Philips</div>
-            <div class="character-description">
-                Trevor Philips is a mentally unstable redneck and bank robber. A former military pilot, he based himself in Sandy Shores, where he founded "Trevor Philips Enterprises", which mainly deals with weapons and drugs.
-            </div>
+        <div id="character3" class="character-box">
+            <img src="/static/images/trevorfront.jpeg" alt="Trevor" class="character-img">
+            <div class="character-name">Trevor</div>
+            <div class="character-description">Trevor is a maniac and a drug dealer who lives in a trailer in the desert. He is also Michael's former crime partner.</div>
             <div class="chat-link" onclick="playVideo('trevor-video', '/chat/character3')">Chat with Trevor</div>
         </div>
-
-        <!-- Hidden video elements -->
+        <div id="night-video" class="video-overlay hidden">
+            <video autoplay>
+                <source src="/static/videos/set.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
         <div id="franklin-video" class="video-overlay hidden">
             <video autoplay>
-                <source src="/static/videos/introclip1.mp4" type="video/mp4">
+                <source src="/static/videos/introclip4.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -316,65 +368,103 @@
             </video>
         </div>
 
-        <div id="night-video" class="video-overlay hidden">
+        <div id="day-video" class="video-overlay hidden">
             <video autoplay>
-                <source src="/static/videos/set.mp4" type="video/mp4">
+                <source src="/static/videos/rise.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
+        <div class="music-player">
+            <audio controls>
+                <source src="/static/music/music1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <!-- <button onclick="toggleMusic()">Toggle Music</button> -->
+        </div>
+    </div>
+
+    <div id="video-overlay" class="video-overlay hidden">
+        <video id="character-video" src="" autoplay></video>
     </div>
 
     <script>
-        function openCharacterBox(character) {
-            const characterBox = document.getElementById(`${character}-box`);
-            const allCharacterBoxes = document.querySelectorAll('.character-box');
-
-            if (characterBox) {
-                // Close all other character boxes
-                allCharacterBoxes.forEach(box => {
-                    if (box !== characterBox && box.classList.contains('active')) {
-                        box.classList.remove('active');
-                    }
-                });
-
-                // Toggle active class for the selected character box
-                characterBox.classList.toggle('active');
-            }
+        function showCharacterBox(characterId) {
+            var characterBox = document.getElementById(characterId);
+            characterBox.classList.add('active');
+            setTimeout(function() {
+                characterBox.classList.remove('active');
+            }, 5000);
         }
 
-        function playVideo(videoId, redirectUrl) {
-            const videoOverlay = document.getElementById(videoId);
-            const video = videoOverlay.querySelector('video');
+function playVideo(videoId, redirectUrl) {
 
-            // Show the video overlay
-            videoOverlay.classList.remove('hidden');
+    const videoOverlay = document.getElementById(videoId);
+    const video = videoOverlay.querySelector('video');
 
-            // Play the video from the beginning each time it's shown
-            video.currentTime = 0; // Reset video to start
-            video.play();
+    // Mute the video
+    video.muted = true;
 
-            // Redirect to the chat page after the video ends
-            video.onended = function() {
-                videoOverlay.classList.add('hidden');
-                window.location.href = redirectUrl;
-            };
+    // Show the video overlay
+    videoOverlay.classList.remove('hidden');
 
-            // Prevent the default link behavior
-            return false;
+    // Play the video from the beginning each time it's shown
+    video.currentTime = 0; // Reset video to start
+    video.play();
+
+    // Add event listener to skip video when clicked or tapped
+    videoOverlay.addEventListener('click', function() {
+        // Redirect to the chat page
+        window.location.href = redirectUrl;
+    });
+
+    // Redirect to the chat page after the video ends (if not clicked or tapped)
+    video.onended = function() {
+        if (!videoOverlay.classList.contains('hidden')) {
+            videoOverlay.classList.add('hidden');
+            window.location.href = redirectUrl;
         }
+    };
 
-        function playNightVideo() {
-            const nightVideoOverlay = document.getElementById('night-video');
-            const nightVideo = nightVideoOverlay.querySelector('video');
+    // Prevent the default link behavior
+    return false;
+}
 
-            if (nightVideoOverlay && nightVideo) {
-                nightVideoOverlay.classList.remove('hidden');
-                nightVideo.play();
 
-                nightVideo.onended = function() {
-                    nightVideoOverlay.classList.add('hidden');
-                    window.location.href = '/';
-                }
+function playDayVideo() {
+    const dayVideoOverlay = document.getElementById('night-video');
+    const dayVideo = dayVideoOverlay.querySelector('video');
+
+    // Mute the day video
+    dayVideo.muted = true;
+
+    // Show the day video overlay
+    dayVideoOverlay.classList.remove('hidden');
+
+    // Play the day video from the beginning each time it's shown
+    dayVideo.currentTime = 0; // Reset video to start
+    dayVideo.play();
+
+    // Redirect to index2.html after the day video ends
+    dayVideo.onended = function() {
+        dayVideoOverlay.classList.add('hidden');
+        window.location.href = '/';                dayVideo.stop();
+
+    };
+
+    // Prevent the default link behavior
+    return false;
+}
+
+ function toggleMusic() {
+            var audio = document.querySelector('.music-player audio');
+            var button = document.querySelector('.music-player button');
+
+            if (audio.paused) {
+                audio.play();
+                button.textContent = 'Pause Music';
+            } else {
+                audio.pause();
+                button.textContent = 'Play Music';
             }
         }
     </script>

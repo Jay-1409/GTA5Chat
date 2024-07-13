@@ -1,9 +1,24 @@
-from flask import Flask, render_template, request, jsonify
-from google.generativeai.types import HarmCategory, HarmBlockThreshold
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 import google.generativeai as genai
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
+import os
 
 # Configure the Flask application
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key')  # Ensure to replace 'your_secret_key' with a real key or set it in your environment
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
 
 # Configure the Gemini API
 genai.configure(api_key="AIzaSyAdhHba59C82frkiMmR0U1a5YzfFuYm8DM")  # Replace with your actual API key
@@ -24,6 +39,45 @@ generation_config = {
     "response_mime_type": "text/plain",
 }
 
+# User model
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    password = db.Column(db.String(60), nullable=False)
+
+    def __repr__(self):
+        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+# Forms
+class RegistrationForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Sign Up')
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError('That username is taken. Please choose a different one.')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('That email is taken. Please choose a different one.')
+
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')
+
 # Function to initialize chat session with the selected character
 def initialize_chat_session(character_name):
     return genai.GenerativeModel(
@@ -42,7 +96,7 @@ def initialize_chat_session(character_name):
         Also, do not reply to any questions that are not related to the game; instead, just say something like "You think I am an idiot asking such obvious questions."""
     ).start_chat(history=[])
 
-# Route for rendering HTML templates
+# Routes
 @app.route('/')
 def index():
     return render_template('index.html', characters=characters)
@@ -51,8 +105,42 @@ def index():
 def index2():
     return render_template('index2.html', characters=characters)
 
-# Route for selecting a character and starting a chat session
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        flash('Your account has been created! You are now able to log in', 'success')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('index'))
+        else:
+            flash('Login Unsuccessful. Please check email and password', 'danger')
+    return render_template('login.html', title='Login', form=form)
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
 @app.route('/chat/<character>')
+@login_required
 def chat_character(character):
     if character in characters:
         global chat_session
@@ -61,8 +149,8 @@ def chat_character(character):
     else:
         return render_template('error.html', error_message="Character not found"), 404
 
-# Route for handling chat messages
 @app.route('/chat', methods=['POST'])
+@login_required
 def chat_response():
     global chat_session
     message = request.form['message']
