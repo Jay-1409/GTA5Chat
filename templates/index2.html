@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME TO LOS SANTOS</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-image: url('/static/images/back2.jpg');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            position: relative;
+            overflow: auto;
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        #header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            animation: slideDown 0.5s ease-in-out;
+        }
+
+        #header img {
+            width: 60px;
+            height: auto;
+            margin-right: 10px;
+            vertical-align: middle;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #header img:hover {
+            transform: rotate(360deg);
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 24px;
+            margin-right: 50px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #header .toggle-switch {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        #header .toggle-switch input {
+            margin-left: 10px;
+        }
+
+        #map {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background-image: url('/static/images/map_background.jpg');
+            background-size: cover;
+            margin-top: 20px;
+        }
+
+        .logo {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-size: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            z-index: 10;
+            border: 3px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .logo:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            animation: pulse 1s infinite;
+        }
+
+        .character-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            display: none;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .character-box.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .character-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            animation: slideInLeft 0.5s ease-in-out;
+        }
+
+        .character-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+
+        .character-description {
+            font-size: 16px;
+            animation: slideInRight 0.5s ease-in-out;
+        }
+
+        .chat-link {
+            display: block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .chat-link:hover {
+            background-color: #45a049;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .video-overlay video {
+            width: fit-content;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .video-overlay.hidden {
+            display: none;
+        }
+
+        .night-button:hover {
+            animation: pulse 1s ;
+/*            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #4CAF50, 0 0 25px #4CAF50, 0 0 30px #4CAF50, 0 0 35px #4CAF50;*/
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
+        <h1>Welcome to Los Santos</h1>
+        <div class="toggle-switch">
+            <a href="/video1" style="color: #4CAF50; text-decoration: double; margin-left: 550px;">Video Map</a>
+        </div>
+        <div class="toggle-switch night-button">
+            <a href="#" style="color: #4CAF50; text-decoration: double; margin-right: 100px;" onclick="playNightVideo()">Night</a>
+        </div>
+    </div>
+
+    <div id="map">
+        <!-- Example logos (replace with actual positions) -->
+        <div class="logo" style="top: 410px; left: 775px; background-image: url('/static/images/franklinlogo.jpeg');" onclick="openCharacterBox('franklin')"></div>
+        <div class="logo" style="top: 200px; left: 700px; background-image: url('/static/images/micheallogo.jpeg');" onclick="openCharacterBox('michael')"></div>
+        <div class="logo" style="top: 150px; left: 900px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="openCharacterBox('trevor')"></div>
+        <!-- Add more logos as needed -->
+
+        <!-- Character boxes -->
+        <div id="franklin-box" class="character-box">
+            <img class="character-img" src="/static/images/franklinfront.jpeg" alt="Franklin Clinton">
+            <div class="character-name">Franklin Clinton</div>
+            <div class="character-description">
+                Franklin is a young and ambitious street hustler, working for a corrupt Armenian car salesman.
+            </div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character1')">Chat with Franklin</div>
+        </div>
+
+        <div id="michael-box" class="character-box">
+            <img class="character-img" src="/static/images/michealfront.jpeg" alt="Michael De Santa">
+            <div class="character-name">Michael De Santa</div>
+            <div class="character-description">
+                Michael, formerly known as Michael Townley, is a professional ex-con whose retirement is a lot less rosy than he hoped it would be.
+            </div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character2')">Chat with Michael</div>
+        </div>
+
+        <div id="trevor-box" class="character-box">
+            <img class="character-img" src="/static/images/trevorfront.jpeg" alt="Trevor Philips">
+            <div class="character-name">Trevor Philips</div>
+            <div class="character-description">
+                Trevor Philips is a mentally unstable redneck and bank robber. A former military pilot, he based himself in Sandy Shores, where he founded "Trevor Philips Enterprises", which mainly deals with weapons and drugs.
+            </div>
+            <div class="chat-link" onclick="playVideo('trevor-video', '/chat/character3')">Chat with Trevor</div>
+        </div>
+
+        <!-- Hidden video elements -->
+        <div id="franklin-video" class="video-overlay hidden">
+            <video autoplay>
+                <source src="/static/videos/introclip1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div id="michael-video" class="video-overlay hidden">
+            <video autoplay>
+                <source src="/static/videos/introclip2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div id="trevor-video" class="video-overlay hidden">
+            <video autoplay>
+                <source src="/static/videos/introclip3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div id="night-video" class="video-overlay hidden">
+            <video autoplay>
+                <source src="/static/videos/set.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        function openCharacterBox(character) {
+            const characterBox = document.getElementById(`${character}-box`);
+            const allCharacterBoxes = document.querySelectorAll('.character-box');
+
+            if (characterBox) {
+                // Close all other character boxes
+                allCharacterBoxes.forEach(box => {
+                    if (box !== characterBox && box.classList.contains('active')) {
+                        box.classList.remove('active');
+                    }
+                });
+
+                // Toggle active class for the selected character box
+                characterBox.classList.toggle('active');
+            }
+        }
+
+        function playVideo(videoId, redirectUrl) {
+            const videoOverlay = document.getElementById(videoId);
+            const video = videoOverlay.querySelector('video');
+
+            // Show the video overlay
+            videoOverlay.classList.remove('hidden');
+
+            // Play the video from the beginning each time it's shown
+            video.currentTime = 0; // Reset video to start
+            video.play();
+
+            // Redirect to the chat page after the video ends
+            video.onended = function() {
+                videoOverlay.classList.add('hidden');
+                window.location.href = redirectUrl;
+            };
+
+            // Prevent the default link behavior
+            return false;
+        }
+
+        function playNightVideo() {
+            const nightVideoOverlay = document.getElementById('night-video');
+            const nightVideo = nightVideoOverlay.querySelector('video');
+
+            if (nightVideoOverlay && nightVideo) {
+                nightVideoOverlay.classList.remove('hidden');
+                nightVideo.play();
+
+                nightVideo.onended = function() {
+                    nightVideoOverlay.classList.add('hidden');
+                    window.location.href = '/';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
