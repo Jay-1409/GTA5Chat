@@ -27,7 +27,17 @@ genai.configure(api_key="AIzaSyAdhHba59C82frkiMmR0U1a5YzfFuYm8DM")  # Replace wi
 characters = {
     "character1": "Franklin",
     "character2": "Michael",
-    "character3": "Trevor"
+    "character3": "Trevor",
+    "character4": "Lester",
+    "character5": "Amanda", #
+    "character6": "Ron",
+    "character7": "Lazlow", #
+    "character8": "Lamar",
+    "character9": "Jimmy",
+    "character10": "Tracey", #
+    "character11": "Packie",
+    "character12": "Devin",
+    "character13": "Steve",
 }
 
 # Initialize the Gemini AI model

@@ -40,7 +40,7 @@
         }
 
         #header img:hover {
-            transform: rotate(360deg);
+            filter: drop-shadow(0 0 15px white);
         }
 
         #header h1 {
@@ -315,9 +315,14 @@
 
     <div id="map">
         <!-- Example logos (replace with actual positions) -->
-        <div class="logo" style="top: 410px; left: 775px; background-image: url('/static/images/franklinlogo.jpeg');" onclick="showCharacterBox('character1')"></div>
-        <div class="logo" style="top: 200px; left: 700px; background-image: url('/static/images/micheallogo.jpeg');" onclick="showCharacterBox('character2')"></div>
-        <div class="logo" style="top: 150px; left: 900px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="showCharacterBox('character3')"></div>
+        <div class="logo" style="top: 110px; left: 175px; background-image: url('/static/images/franklinlogo.jpeg');" onclick="showCharacterBox('character1')"></div>
+        <div class="logo" style="top: 300px; left: 400px; background-image: url('/static/images/micheallogo.jpeg');" onclick="showCharacterBox('character2')"></div>
+        <div class="logo" style="top: 350px; left: 50px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="showCharacterBox('character3')"></div>
+        <div class="logo" style="top: 450px; left: 750px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="showCharacterBox('character4')"></div>
+        <div class="logo" style="top: 200px; left: 600px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="showCharacterBox('character5')"></div>
+        <div class="logo" style="top: 300px; left: 1200px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="showCharacterBox('character6')"></div>
+        <div class="logo" style="top: 530px; left: 1000px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="showCharacterBox('character7')"></div>
+
         <!-- Add more logos as needed -->
 
         <!-- Character boxes -->
@@ -331,16 +336,45 @@
         <div id="character2" class="character-box">
             <img src="/static/images/michealfront.jpeg" alt="Michael" class="character-img">
             <div class="character-name">Michael</div>
-            <div class="character-description">Michael, formerly known as Michael Townley, is a professional ex-con whose life isn't what he hoped it would be.</div>
+            <div class="character-description">Michael, formerly known as Michael Townley, is a professional ex-con whose retirement is a lot less rosy than he hoped it would be.</div>
             <div class="chat-link" onclick="playVideo('michael-video', '/chat/character2')">Chat with Michael</div>
         </div>
-
+        
         <div id="character3" class="character-box">
             <img src="/static/images/trevorfront.jpeg" alt="Trevor" class="character-img">
             <div class="character-name">Trevor</div>
-            <div class="character-description">Trevor is a maniac and a drug dealer who lives in a trailer in the desert. He is also Michael's former crime partner.</div>
-            <div class="chat-link" onclick="playVideo('trevor-video', '/chat/character3')">Chat with Trevor</div>
+            <div class="character-description">Trevor Philips is a mentally unstable redneck and bank robber. A former military pilot, he based himself in Sandy Shores, where he founded "Trevor Philips Enterprises", which mainly deals with weapons and drugs.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character3')">Chat with Trevor</div>
         </div>
+
+        <div id="character4" class="character-box">
+            <img src="/static/images/trevorfront.jpeg" alt="Trevor" class="character-img">
+            <div class="character-name">Lester</div>
+            <div class="character-description">Lester is a close associate and longtime friend of Michael and Trevor. He is a brilliant but physically disabled hacker and strategist who assists the protagonists in planning and executing their heists. Lester is highly intelligent and resourceful, often providing crucial information and support to the crew.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character4')">Chat with Lester</div>
+        </div>
+
+        <div id="character5" class="character-box">
+            <img src="/static/images/trevorfront.jpeg" alt="Trevor" class="character-img">
+            <div class="character-name">Amanda</div>
+            <div class="character-description"> Amanda is Michael De Santa's wife. She is a former stripper who met Michael before he entered the witness protection program. Their marriage is strained due to mutual infidelities and a lack of communication, but they attempt to reconcile for the sake of their family.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character5')">Chat with Amanda</div>
+        </div>
+
+        <div id="character6" class="character-box">
+            <img src="/static/images/trevorfront.jpeg" alt="Trevor" class="character-img">
+            <div class="character-name">Ron</div>
+            <div class="character-description">Ron, also known as "Nervous Ron," is Trevor Philips' paranoid and loyal friend. He is deeply involved in Trevor Philips Enterprises and often helps Trevor with various criminal activities. Ron is known for his conspiracy theories and nervous demeanor, but he remains a dedicated and supportive ally to Trevor.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character6')">Chat with Ron</div>
+        </div>
+
+        <div id="character7" class="character-box">
+            <img src="/static/images/trevorfront.jpeg" alt="Trevor" class="character-img">
+            <div class="character-name">Lazlow</div>
+            <div class="character-description">Lazlow is a well-known radio personality within the GTA series, appearing in multiple games. In GTA V, Lazlow is portrayed as a washed-up and desperate television host trying to revitalize his career. He hosts the in-game reality TV show "Fame or Shame," where he often faces ridicule and humiliation. Lazlow's character is a satirical take on media personalities and the entertainment industry.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character7')">Chat with Lazlow</div>
+        </div>
+        
         <div id="night-video" class="video-overlay hidden">
             <video autoplay>
                 <source src="/static/videos/set.mp4" type="video/mp4">

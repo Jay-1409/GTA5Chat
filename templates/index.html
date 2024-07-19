@@ -39,7 +39,8 @@
         }
 
         #header img:hover {
-            transform: rotate(360deg);
+/*            transform: rotate(360deg);*/
+            filter: drop-shadow(0 0 15px white);
         }
 
         #header h1 {
@@ -81,8 +82,8 @@
 
         .logo {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background-size: cover;
             cursor: pointer;
@@ -313,31 +314,55 @@
 
     <div id="map">
         <!-- Example logos (replace with actual positions) -->
-        <div class="logo" style="top: 110px; left: 175px; background-image: url('/static/images/franklinlogo.jpeg');" onclick="showCharacterBox('character1')"></div>
-        <div class="logo" style="top: 300px; left: 400px; background-image: url('/static/images/micheallogo.jpeg');" onclick="showCharacterBox('character2')"></div>
-        <div class="logo" style="top: 350px; left: 900px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="showCharacterBox('character3')"></div>
+        <div class="logo" style="top: 510px; left: 675px; background-image: url('/static/images/lamarlogo.png');" onclick="showCharacterBox('character8')"></div>
+        <div class="logo" style="top: 300px; left: 400px; background-image: url('/static/images/jummylogo.jpeg.png');" onclick="showCharacterBox('character9')"></div>
+        <div class="logo" style="top: 350px; left: 50px; background-image: url('/static/images/tracylogo.png');" onclick="showCharacterBox('character10')"></div>
+        <div class="logo" style="top: 450px; left: 950px; background-image: url('/static/images/packielogo.jpeg');" onclick="showCharacterBox('character11')"></div>
+        <div class="logo" style="top: 200px; left: 600px; background-image: url('/static/images/devinlogo.jpeg');" onclick="showCharacterBox('character12')"></div>
+        <div class="logo" style="top: 300px; left: 1200px; background-image: url('/static/images/stevelogo.png');" onclick="showCharacterBox('character13')"></div>
         <!-- Add more logos as needed -->
 
         <!-- Character boxes -->
-        <div id="character1" class="character-box">
-            <img src="/static/images/franklinfront.jpeg" alt="Franklin" class="character-img">
-            <div class="character-name">Franklin</div>
-            <div class="character-description">Franklin is a young and ambitious street hustler, working for a corrupt Armenian car salesman.</div>
-            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character1')">Chat with Franklin</div>
+        <div id="character8" class="character-box">
+            <img src="/static/images/lamarfront.png" alt="Lamar" class="character-img">
+            <div class="character-name">Lamar</div>
+            <div class="character-description">Lamar is Franklin's best friend and a fellow gang member. He is ambitious but lacks the discipline and foresight that Franklin possesses. Lamar frequently gets himself and Franklin into trouble.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character8')">Chat with Lamar</div>
         </div>
 
-        <div id="character2" class="character-box">
-            <img src="/static/images/michealfront.jpeg" alt="Michael" class="character-img">
-            <div class="character-name">Michael</div>
-            <div class="character-description">Michael, formerly known as Michael Townley, is a professional ex-con whose retirement is a lot less rosy than he hoped it would be.</div>
-            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character2')">Chat with Michael</div>
+        <div id="character9" class="character-box">
+            <img src="/static/images/Jimmyfront.png" alt="Jimmy" class="character-img">
+            <div class="character-name">Jimmy</div>
+            <div class="character-description">Jimmy is Michael and Amanda's son. He is a lazy, overweight, and underachieving young man who spends most of his time playing video games, smoking marijuana, and causing trouble. Despite his shortcomings, Jimmy cares for his family and ultimately seeks his father's approval.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character9')">Chat with Jimmy</div>
         </div>
         
-        <div id="character3" class="character-box">
-            <img src="/static/images/trevorfront.jpeg" alt="Trevor" class="character-img">
-            <div class="character-name">Trevor</div>
-            <div class="character-description">Trevor Philips is a mentally unstable redneck and bank robber. A former military pilot, he based himself in Sandy Shores, where he founded "Trevor Philips Enterprises", which mainly deals with weapons and drugs.</div>
-            <div class="chat-link" onclick="playVideo('trevor-video', '/chat/character3')">Chat with Trevor</div>
+        <div id="character10" class="character-box">
+            <img src="/static/images/tracyfront.jpeg.png" alt="Tracey" class="character-img">
+            <div class="character-name">Tracey</div>
+            <div class="character-description">Tracey is Michael and Amanda's daughter. She is an aspiring celebrity who is often depicted as shallow and self-absorbed. Tracey's dreams of fame often put her at odds with her family, especially her father, who disapproves of her lifestyle and choices.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character10')">Chat with Tracey</div>
+        </div>
+
+        <div id="character11" class="character-box">
+            <img src="/static/images/packiefront.jpeg" alt="Packie" class="character-img">
+            <div class="character-name">Packie</div>
+            <div class="character-description">Packie is an Irish-American gangster from Liberty City, Known for his skills in armed robbery and explosives, Packie brings valuable expertise to the heist planning and execution.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character11')">Chat with Packie</div>
+        </div>
+
+        <div id="character12" class="character-box">
+            <img src="/static/images/Devinfront.jpeg" alt="Devin" class="character-img">
+            <div class="character-name">Devin</div>
+            <div class="character-description"> Devin is a wealthy and ruthless venture capitalist and investor. He is one of the main antagonists of the game, often using his influence and resources to manipulate others for his gain. Devin's interactions with the protagonists are primarily antagonistic, as he seeks to exploit their skills for his profit.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character12')">Chat with Devin</div>
+        </div>
+
+        <div id="character13" class="character-box">
+            <img src="/static/images/stevefront.jpeg" alt="Steve" class="character-img">
+            <div class="character-name">Steve</div>
+            <div class="character-description">Steve is a corrupt and manipulative FIB (Federal Investigation Bureau) agent. He uses his position to further his agenda and maintain control over the protagonists, often forcing them into dangerous situations for his benefit.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character13')">Chat with Steve</div>
         </div>
 
         <!-- Hidden video elements -->
@@ -369,13 +394,13 @@
             </video>
         </div>
 
-        <div class="music-player">
+<!--         <div class="music-player">
             <audio controls>
                 <source src="/static/music/music1.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
             <!-- <button onclick="toggleMusic()">Toggle Music</button> -->
-        </div>
+        </div> -->
     </div>
 
     <script>
@@ -457,6 +482,29 @@ function playVideo(videoId, redirectUrl) {
                 button.textContent = 'Play Music';
             }
         }
+
+        document.addEventListener('click', function(event) {
+    const activeBox = document.querySelector('.character-box.active');
+    if (activeBox && !activeBox.contains(event.target) && !event.target.classList.contains('logo')) {
+        activeBox.classList.remove('active');
+    }
+});
+        document.querySelectorAll('.logo').forEach(logo => {
+    logo.addEventListener('click', function() {
+        const character = this.getAttribute('data-character');
+        const box = document.getElementById(`${character}-box`);
+        box.classList.add('active');
+    });
+});
+
+// Add this part
+document.addEventListener('click', function(event) {
+    const activeBox = document.querySelector('.character-box.active');
+    if (activeBox && !activeBox.contains(event.target) && !event.target.classList.contains('logo')) {
+        activeBox.classList.remove('active');
+    }
+});
+    
     </script>
 </body>
 </html>
