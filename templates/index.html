@@ -1,3 +1,4 @@
+<!-- AFTERNOON -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,58 +19,205 @@
             css display: flex;
         }
 
-        #header {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px 20px;
-            position: sticky;
-            top: 0; /* Stick to the top of the viewport */
-            width: 100%;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  /* Modern CSS for Header */
+#header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    animation: slideDown 0.5s ease-in-out;
+}
 
-        #header img {
-            width: 60px;
-            height: auto;
-            margin-right: 10px;
-            vertical-align: middle;           
-            transition: transform 0.3s ease-in-out;
-        }
+#header img {
+    width: 60px;
+    height: auto;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
 
-        #header img:hover {
-/*            transform: rotate(360deg);*/
-            filter: drop-shadow(0 0 15px white);
-        }
+#header img:hover {
+    filter: drop-shadow(0 0 15px white);
+    transform: scale(1.1);
+}
 
-        #header h1 {
-            margin: 0;
-            font-size: 24px;
-            margin-right: 50px;
-        }
+#header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #fff;
+    margin-right: 50px;
+    animation: fadeIn 1s ease-in-out;
+}
 
-        .toggle-switch {
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-        }
+/* Container for button groups */
+.header-buttons {
+    display: flex;
+    gap: 20px;
+}
 
-        .toggle-switch a {
-            color: #4CAF50;
-            text-decoration: underline; /* Double underline removed */
-        }
+/* Container for individual buttons */
+.button-container {
+    position: relative;
+}
 
-        .night-button {
-        }
+/* General button styling */
+.button-container a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    background-color: #4CAF50; /* Base background color */
+    border: 2px solid transparent; /* Transparent border for initial state */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: relative; /* For pseudo-element */
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+}
 
-        .logout-button {
-        }
+/* Pseudo-element for modern hover effect */
+.button-container a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    z-index: 0; /* Behind the text */
+}
 
-        .logout-button a {
-            color: #4CAF50;
-            text-decoration: underline; /* Double underline removed */
-        }
+/* Hover effects for all buttons */
+.button-container a:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.button-container a:hover {
+    background-color: #388E3C; /* Darker shade on hover */
+    color: #fff;
+    border-color: #388E3C;
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Specific styling for individual buttons */
+.toggle-switch a {
+    background-color: #4CAF50; /* Base color */
+}
+
+.night-button a {
+    background-color: #333; /* Darker color */
+}
+
+.logout-button a {
+    background-color: #F44336; /* Red color */
+}
+
+/* Adjusting text color for specific buttons */
+.toggle-switch a:hover {
+    color: #fff;
+}
+
+.night-button a:hover {
+    color: #fff;
+}
+
+.logout-button a:hover {
+    color: #fff;
+}
+
+/* Dropdown button styling */
+.dropdown-button {
+    background-color: #4CAF50; /* Base background color */
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: 2px solid transparent; /* Transparent border for initial state */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: relative; /* For dropdown positioning */
+}
+
+/* Dropdown menu styling */
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Below the button */
+    left: 0;
+    background-color: #333; /* Dark background for dropdown */
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    min-width: 160px;
+    z-index: 1000; /* Ensure it's above other content */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Dropdown item styling */
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-bottom: 1px solid #444; /* Divider line between items */
+}
+
+.dropdown-content a:hover {
+    background-color: #555; /* Darker background on hover */
+    color: #fff;
+}
+
+/* Show dropdown content on hover */
+.button-container:hover .dropdown-content {
+   display: none;
+    opacity: 1;
+    transform: translateY(10px); /* Smooth appearance */
+}
+
+/* Hover effects for dropdown button */
+.dropdown-button:hover {
+    background-color: #388E3C; /* Darker shade on hover */
+    color: #fff;
+    border-color: #388E3C;
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 
         #map {
             position: relative;
@@ -100,6 +248,25 @@
             animation: pulse 1s infinite;
         }
 
+        .logo_t2{
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-size: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            z-index: 10;
+            border: 3px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .logo_t2:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            animation: pulse 1s infinite;
+        }
         .character-box {
             position: absolute;
             top: 50%;
@@ -291,33 +458,81 @@
                 transform: translateY(0);
             }
         }
-        .night-button:hover {
-            animation: pulse 2s ;
-/*            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #4CAF50, 0 0 25px #4CAF50, 0 0 30px #4CAF50, 0 0 35px #4CAF50;*/
-        }
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Night page</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /* Include CSS styles from previous response here or link to a separate CSS file */
     </style>
 </head>
 <body>
     <div id="header">
         <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
         <h1>Welcome to Los Santos</h1>
-        <div class="toggle-switch">
-            <a href="/video1" style="color: #4CAF50; text-decoration: double; margin-right: 10px;">Video Map</a>
-        </div>
-        <div class="night-button">
-            <a href="#" style="color: #4CAF50; text-decoration: double; margin-right: -990px;" onclick="playDayVideo()">Day</a>
-        </div>
-        <div class="logout-button">
-            <a href="/logout" style="color: #4CAF50; text-decoration: double; margin-right: 70px;">Logout</a>
+        <div class="header-buttons">
+            <div class="button-container toggle-switch">
+                <a href="/video1">Video Map</a>
+            </div>
+
+            <div class="button-container night-button">
+            <div class="dropdown">
+                    <button class="dropdown-button" onclick="toggleDropdown()">Day</button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="playDayVideo1()">Afternoon City</a>
+                        <a href="#" onclick="playDayVideo2()">Evening City</a>
+                        <a href="#" onclick="playDayVideo3()">Morning City</a>
+                    </div>
+            </div>
+            </div>
+
+            <div class="button-container logout-button">
+                <a href="/logout">Logout</a>
+            </div>
         </div>
     </div>
+
+<script>
+function toggleDropdown() {
+    var dropdownContent = document.querySelector('.dropdown-content');
+    dropdownContent.classList.toggle('show-dropdown');
+}
+
+    // Close dropdown if clicking outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-button') && !event.target.closest('.dropdown-content')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show-dropdown')) {
+                    openDropdown.classList.remove('show-dropdown');
+                }
+            }
+        }
+    }
+</script>
+<style>
+    .show-dropdown {
+    display: block !important;
+}
+</style>
+</body>
+</html>
+
+</script>
 
     <div id="map">
         <!-- Example logos (replace with actual positions) -->
         <div class="logo" style="top: 510px; left: 675px; background-image: url('/static/images/lamarlogo.png');" onclick="showCharacterBox('character8')"></div>
-        <div class="logo" style="top: 300px; left: 400px; background-image: url('/static/images/jummylogo.jpeg.png');" onclick="showCharacterBox('character9')"></div>
+        <div class="logo_t2" style="top: 300px; left: 400px; background-image: url('/static/images/jummylogo.jpeg.png');" onclick="showCharacterBox('character9')"></div>
         <div class="logo" style="top: 350px; left: 50px; background-image: url('/static/images/tracylogo.png');" onclick="showCharacterBox('character10')"></div>
-        <div class="logo" style="top: 450px; left: 950px; background-image: url('/static/images/packielogo.jpeg');" onclick="showCharacterBox('character11')"></div>
+        <div class="logo_t2" style="top: 450px; left: 950px; background-image: url('/static/images/packielogo.jpeg');" onclick="showCharacterBox('character11')"></div>
         <div class="logo" style="top: 200px; left: 600px; background-image: url('/static/images/devinlogo.jpeg');" onclick="showCharacterBox('character12')"></div>
         <div class="logo" style="top: 300px; left: 1200px; background-image: url('/static/images/stevelogo.png');" onclick="showCharacterBox('character13')"></div>
         <!-- Add more logos as needed -->
@@ -404,17 +619,31 @@
     </div>
 
     <script>
-        function showCharacterBox(characterId) {
-            // Hide all character boxes
-            const characterBoxes = document.querySelectorAll('.character-box');
-            characterBoxes.forEach(box => {
-                box.classList.remove('active');
-            });
+    function showCharacterBox(characterId) {
+        // Hide any currently active character boxes
+        var activeBoxes = document.querySelectorAll('.character-box.active');
+        activeBoxes.forEach(function(box) {
+            box.classList.remove('active');
+            setTimeout(function() {
+                box.style.display = 'none';
+            }, 500); // Match this with the transition duration
+        });
 
-            // Show the selected character box
-            const characterBox = document.getElementById(characterId);
+        // Show the new character box
+        var characterBox = document.getElementById(characterId);
+        characterBox.style.display = 'block';
+        setTimeout(function() {
             characterBox.classList.add('active');
-        }
+        }, 10); // Slight delay to allow display change to take effect
+
+        // Remove the active class after 5 seconds
+        setTimeout(function() {
+            characterBox.classList.remove('active');
+            setTimeout(function() {
+                characterBox.style.display = 'none';
+            }, 500); // Match this with the transition duration
+        }, 5000);
+    }
 
 function playVideo(videoId, redirectUrl) {
     const videoOverlay = document.getElementById(videoId);
@@ -450,7 +679,7 @@ function playVideo(videoId, redirectUrl) {
 
 
 
-        function playDayVideo() {
+        function playDayVideo1() {
             const dayVideoOverlay = document.getElementById('day-video');
             const dayVideo = dayVideoOverlay.querySelector('video');
             dayVideo.muted=true;
@@ -465,6 +694,46 @@ function playVideo(videoId, redirectUrl) {
             dayVideo.onended = function() {
                 dayVideoOverlay.classList.add('hidden');
                 window.location.href = '/index2.html';
+            };
+
+            // Prevent the default link behavior
+            return false;
+        }
+                function playDayVideo2() {
+            const dayVideoOverlay = document.getElementById('day-video');
+            const dayVideo = dayVideoOverlay.querySelector('video');
+            dayVideo.muted=true;
+            // Show the day video overlay
+            dayVideoOverlay.classList.remove('hidden');
+
+            // Play the day video from the beginning each time it's shown
+            dayVideo.currentTime = 0; // Reset video to start
+            dayVideo.play();
+
+            // Redirect to index2.html after the day video ends
+            dayVideo.onended = function() {
+                dayVideoOverlay.classList.add('hidden');
+                window.location.href = '/index3.html';
+            };
+
+            // Prevent the default link behavior
+            return false;
+        }
+                function playDayVideo3() {
+            const dayVideoOverlay = document.getElementById('day-video');
+            const dayVideo = dayVideoOverlay.querySelector('video');
+            dayVideo.muted=true;
+            // Show the day video overlay
+            dayVideoOverlay.classList.remove('hidden');
+
+            // Play the day video from the beginning each time it's shown
+            dayVideo.currentTime = 0; // Reset video to start
+            dayVideo.play();
+
+            // Redirect to index2.html after the day video ends
+            dayVideo.onended = function() {
+                dayVideoOverlay.classList.add('hidden');
+                window.location.href = '/index4.html';
             };
 
             // Prevent the default link behavior

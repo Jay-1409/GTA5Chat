@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,7 @@
     <style>
         body {
             font-family: monospace;
-            background-image: url('/static/images/{{character}}nback.jpg');
+            background-image: url('/static/images/{{ character }}nback.jpg');
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -57,8 +56,7 @@
             text-decoration: underline;
         }
 
-        .logout-button {
-        }
+        .logout-button {}
 
         .logout-button a {
             color: #4CAF50;
@@ -116,13 +114,12 @@
         }
     </style>
 </head>
-
 <body>
     <div id="header">
-    <a href="/">
-        <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
-    </a>        
-    <h1>Welcome to Los Santos</h1>
+        <a href="{{ url_for('logo_click') }}">
+            <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
+        </a>        
+        <h1>Welcome to Los Santos</h1>
         <div class="toggle-switch">
             <a href="/video1" style="color: #4CAF50; text-decoration: double; margin-right: 10px;">Video Map</a>
         </div>
@@ -136,7 +133,7 @@
             <!-- Messages will be dynamically populated here -->
         </div>
         <input type="text" id="userInput" placeholder="Type a message..." onkeypress="checkEnter(event)">
-        <button onclick="sendMessage()">Send</button>
+        <!-- <button onclick="sendMessage()">Send</button> -->
     </div>
 
     <script>
@@ -192,5 +189,4 @@
         });
     </script>
 </body>
-
 </html>

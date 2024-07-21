@@ -1,13 +1,14 @@
+<!-- AFTERNOON -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WELCOME TO LOS SANTOS</title>
+    <title>Los Santos Legends Chat - Choose Your Legend</title>
     <style>
         body {
             font-family: monospace;
-            background-image: url('/static/images/back2.jpg');
+            background-image: url('/static/images/back3.jpg');
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -483,8 +484,8 @@
                 <div class="dropdown">
                     <button class="dropdown-button" onclick="toggleDropdown()">Day</button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="playDayVideo1()">Night City</a>
-                        <a href="#" onclick="playDayVideo2()">Evening City</a>
+                        <a href="#" onclick="playDayVideo1()">Afternoon City</a>
+                        <a href="#" onclick="playDayVideo2()">Night City</a>
                         <a href="#" onclick="playDayVideo3()">Morning City</a>
                     </div>
                 </div>
@@ -519,81 +520,66 @@
     display: block !important;
 }
 </style>
+
 </body>
 </html>
 
 </script>
 
-
-
     <div id="map">
         <!-- Example logos (replace with actual positions) -->
-        <div class="logo" style="top: 310px; left: 175px; background-image: url('/static/images/franklinlogo.jpeg');" onclick="showCharacterBox('character1')"></div>
-        <div class="logo" style="top: 300px; left: 400px; background-image: url('/static/images/micheallogo.jpeg');" onclick="showCharacterBox('character2')"></div>
-        <div class="logo" style="top: 350px; left: 50px; background-image: url('/static/images/trevorlogo.jpeg');" onclick="showCharacterBox('character3')"></div>
-        <div class="logo" style="top: 450px; left: 750px; background-image: url('/static/images/lesterlogo.jpeg');" onclick="showCharacterBox('character4')"></div>
-        <div class="logo" style="top: 300px; left: 600px; background-image: url('/static/images/amandalogo.jpeg');" onclick="showCharacterBox('character5')"></div>
-        <div class="logo" style="top: 300px; left: 1200px; background-image: url('/static/images/ronlogo.jpeg.png');" onclick="showCharacterBox('character6')"></div>
-        <div class="logo" style="top: 130px; left: 1000px; background-image: url('/static/images/lazlowlogo.png');" onclick="showCharacterBox('character7')"></div>
-
+        <div class="logo" style="top: 510px; left: 675px; background-image: url('/static/images/lamarlogo.png');" onclick="showCharacterBox('character8')"></div>
+        <div class="logo_t2" style="top: 300px; left: 400px; background-image: url('/static/images/jummylogo.jpeg.png');" onclick="showCharacterBox('character9')"></div>
+        <div class="logo" style="top: 350px; left: 50px; background-image: url('/static/images/tracylogo.png');" onclick="showCharacterBox('character10')"></div>
+        <div class="logo_t2" style="top: 450px; left: 950px; background-image: url('/static/images/packielogo.jpeg');" onclick="showCharacterBox('character11')"></div>
+        <div class="logo" style="top: 200px; left: 600px; background-image: url('/static/images/devinlogo.jpeg');" onclick="showCharacterBox('character12')"></div>
+        <div class="logo" style="top: 300px; left: 1200px; background-image: url('/static/images/stevelogo.png');" onclick="showCharacterBox('character13')"></div>
         <!-- Add more logos as needed -->
 
         <!-- Character boxes -->
-        <div id="character1" class="character-box">
-            <img src="/static/images/franklinfront.jpeg" alt="Franklin" class="character-img">
-            <div class="character-name">Franklin</div>
-            <div class="character-description">Franklin is a young and ambitious street hustler, working for a corrupt Armenian car salesman.</div>
-            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character1')">Chat with Franklin</div>
+        <div id="character8" class="character-box">
+            <img src="/static/images/lamarfront.png" alt="Lamar" class="character-img">
+            <div class="character-name">Lamar</div>
+            <div class="character-description">Lamar is Franklin's best friend and a fellow gang member. He is ambitious but lacks the discipline and foresight that Franklin possesses. Lamar frequently gets himself and Franklin into trouble.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character8')">Chat with Lamar</div>
         </div>
 
-        <div id="character2" class="character-box">
-            <img src="/static/images/michealfront.jpeg" alt="Michael" class="character-img">
-            <div class="character-name">Michael</div>
-            <div class="character-description">Michael, formerly known as Michael Townley, is a professional ex-con whose retirement is a lot less rosy than he hoped it would be.</div>
-            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character2')">Chat with Michael</div>
+        <div id="character9" class="character-box">
+            <img src="/static/images/Jimmyfront.png" alt="Jimmy" class="character-img">
+            <div class="character-name">Jimmy</div>
+            <div class="character-description">Jimmy is Michael and Amanda's son. He is a lazy, overweight, and underachieving young man who spends most of his time playing video games, smoking marijuana, and causing trouble. Despite his shortcomings, Jimmy cares for his family and ultimately seeks his father's approval.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character9')">Chat with Jimmy</div>
         </div>
         
-        <div id="character3" class="character-box">
-            <img src="/static/images/trevorfront.jpeg" alt="Trevor" class="character-img">
-            <div class="character-name">Trevor</div>
-            <div class="character-description">Trevor Philips is a mentally unstable redneck and bank robber. A former military pilot, he based himself in Sandy Shores, where he founded "Trevor Philips Enterprises", which mainly deals with weapons and drugs.</div>
-            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character3')">Chat with Trevor</div>
+        <div id="character10" class="character-box">
+            <img src="/static/images/tracyfront.jpeg.png" alt="Tracey" class="character-img">
+            <div class="character-name">Tracey</div>
+            <div class="character-description">Tracey is Michael and Amanda's daughter. She is an aspiring celebrity who is often depicted as shallow and self-absorbed. Tracey's dreams of fame often put her at odds with her family, especially her father, who disapproves of her lifestyle and choices.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character10')">Chat with Tracey</div>
         </div>
 
-        <div id="character4" class="character-box">
-            <img src="/static/images/lesterfront.png" alt="Trevor" class="character-img">
-            <div class="character-name">Lester</div>
-            <div class="character-description">Lester is a close associate and longtime friend of Michael and Trevor. He is a brilliant but physically disabled hacker and strategist who assists the protagonists in planning and executing their heists. Lester is highly intelligent and resourceful, often providing crucial information and support to the crew.</div>
-            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character4')">Chat with Lester</div>
+        <div id="character11" class="character-box">
+            <img src="/static/images/packiefront.jpeg" alt="Packie" class="character-img">
+            <div class="character-name">Packie</div>
+            <div class="character-description">Packie is an Irish-American gangster from Liberty City, Known for his skills in armed robbery and explosives, Packie brings valuable expertise to the heist planning and execution.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character11')">Chat with Packie</div>
         </div>
 
-        <div id="character5" class="character-box">
-            <img src="/static/images/amandafront.jpeg" alt="Trevor" class="character-img">
-            <div class="character-name">Amanda</div>
-            <div class="character-description"> Amanda is Michael De Santa's wife. She is a former stripper who met Michael before he entered the witness protection program. Their marriage is strained due to mutual infidelities and a lack of communication, but they attempt to reconcile for the sake of their family.</div>
-            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character5')">Chat with Amanda</div>
+        <div id="character12" class="character-box">
+            <img src="/static/images/Devinfront.jpeg" alt="Devin" class="character-img">
+            <div class="character-name">Devin</div>
+            <div class="character-description"> Devin is a wealthy and ruthless venture capitalist and investor. He is one of the main antagonists of the game, often using his influence and resources to manipulate others for his gain. Devin's interactions with the protagonists are primarily antagonistic, as he seeks to exploit their skills for his profit.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character12')">Chat with Devin</div>
         </div>
 
-        <div id="character6" class="character-box">
-            <img src="/static/images/ronfront.jpeg" alt="Trevor" class="character-img">
-            <div class="character-name">Ron</div>
-            <div class="character-description">Ron, also known as "Nervous Ron," is Trevor Philips' paranoid and loyal friend. He is deeply involved in Trevor Philips Enterprises and often helps Trevor with various criminal activities. Ron is known for his conspiracy theories and nervous demeanor, but he remains a dedicated and supportive ally to Trevor.</div>
-            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character6')">Chat with Ron</div>
+        <div id="character13" class="character-box">
+            <img src="/static/images/stevefront.jpeg" alt="Steve" class="character-img">
+            <div class="character-name">Steve</div>
+            <div class="character-description">Steve is a corrupt and manipulative FIB (Federal Investigation Bureau) agent. He uses his position to further his agenda and maintain control over the protagonists, often forcing them into dangerous situations for his benefit.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character13')">Chat with Steve</div>
         </div>
 
-        <div id="character7" class="character-box">
-            <img src="/static/images/lazowfront.jpeg" alt="Trevor" class="character-img">
-            <div class="character-name">Lazlow</div>
-            <div class="character-description">Lazlow is a well-known radio personality within the GTA series, appearing in multiple games. In GTA V, Lazlow is portrayed as a washed-up and desperate television host trying to revitalize his career. He hosts the in-game reality TV show "Fame or Shame," where he often faces ridicule and humiliation. Lazlow's character is a satirical take on media personalities and the entertainment industry.</div>
-            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character7')">Chat with Lazlow</div>
-        </div>
-        
-        <div id="night-video" class="video-overlay hidden">
-            <video autoplay>
-                <source src="/static/videos/set.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
+        <!-- Hidden video elements -->
         <div id="franklin-video" class="video-overlay hidden">
             <video autoplay>
                 <source src="/static/videos/introclip4.mp4" type="video/mp4">
@@ -617,10 +603,11 @@
 
         <div id="day-video" class="video-overlay hidden">
             <video autoplay>
-                <source src="/static/videos/set.mp4" type="video/mp4">
+                <source src="/static/videos/rise.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
+
 <!--         <div class="music-player">
             <audio controls>
                 <source src="/static/music/music1.mp3" type="audio/mpeg">
@@ -628,10 +615,6 @@
             </audio>
             <!-- <button onclick="toggleMusic()">Toggle Music</button> -->
         </div> -->
-    </div>
-
-    <div id="video-overlay" class="video-overlay hidden">
-        <video id="character-video" src="" autoplay></video>
     </div>
 
     <script>
@@ -661,8 +644,62 @@
         }, 5000);
     }
 
-        f
+function playVideo(videoId, redirectUrl) {
+    const videoOverlay = document.getElementById(videoId);
+    const video = videoOverlay.querySelector('video');
+
+    // Mute the video
+    video.muted = true;
+
+    // Show the video overlay
+    videoOverlay.classList.remove('hidden');
+
+    // Play the video from the beginning each time it's shown
+    video.currentTime = 0; // Reset video to start
+    video.play();
+
+    // Add event listener to skip video when clicked or tapped
+    videoOverlay.addEventListener('click', function() {
+        // Redirect to the chat page
+        window.location.href = redirectUrl;
+    });
+
+    // Redirect to the chat page after the video ends (if not clicked or tapped)
+    video.onended = function() {
+        if (!videoOverlay.classList.contains('hidden')) {
+            videoOverlay.classList.add('hidden');
+            window.location.href = redirectUrl;
+        }
+    };
+
+    // Prevent the default link behavior
+    return false;
+}
+
+
+
         function playDayVideo1() {
+            const dayVideoOverlay = document.getElementById('day-video');
+            const dayVideo = dayVideoOverlay.querySelector('video');
+            dayVideo.muted=true;
+            // Show the day video overlay
+            dayVideoOverlay.classList.remove('hidden');
+
+            // Play the day video from the beginning each time it's shown
+            dayVideo.currentTime = 0; // Reset video to start
+            dayVideo.play();
+
+            // Redirect to index2.html after the day video ends
+            dayVideo.onended = function() {
+                dayVideoOverlay.classList.add('hidden');
+                window.location.href = '/index2.html';
+            };
+
+            // Prevent the default link behavior
+            return false;
+        }
+
+        function playDayVideo2() {
             const dayVideoOverlay = document.getElementById('day-video');
             const dayVideo = dayVideoOverlay.querySelector('video');
             dayVideo.muted=true;
@@ -682,27 +719,8 @@
             // Prevent the default link behavior
             return false;
         }
-                function playDayVideo2() {
-            const dayVideoOverlay = document.getElementById('day-video');
-            const dayVideo = dayVideoOverlay.querySelector('video');
-            dayVideo.muted=true;
-            // Show the day video overlay
-            dayVideoOverlay.classList.remove('hidden');
 
-            // Play the day video from the beginning each time it's shown
-            dayVideo.currentTime = 0; // Reset video to start
-            dayVideo.play();
-
-            // Redirect to index2.html after the day video ends
-            dayVideo.onended = function() {
-                dayVideoOverlay.classList.add('hidden');
-                window.location.href = '/index3.html';
-            };
-
-            // Prevent the default link behavior
-            return false;
-        }
-                function playDayVideo3() {
+        function playDayVideo3() {
             const dayVideoOverlay = document.getElementById('day-video');
             const dayVideo = dayVideoOverlay.querySelector('video');
             dayVideo.muted=true;
@@ -722,64 +740,7 @@
             // Prevent the default link behavior
             return false;
         }
-        function playDayVideoAndUpdatePage() {
-            playDayVideo();
-            fetch('/update_last_index/index', {method: 'GET'})
-                .then(response => {
-                    if (response.ok) {
-                        setTimeout(function() {
-                            window.location.href = '/character_page1';
-                        }, 1000);  // Adjust delay as needed
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
-  // function playDayVideoAndUpdatePage() {
-  //           playDayVideo();
-  //           fetch('/update_last_index/index', { method: 'GET' })
-  //               .then(response => {
-  //                   if (response.ok) {
-  //                       setTimeout(function() {
-  //                           window.location.href = '/character_page1';
-  //                       }, 1000);
-  //                   }
-  //               })
-  //               .catch(error => console.error('Error:', error));
-  //       }
-
-        function playVideo(videoId, redirectUrl) {
-            const videoOverlay = document.getElementById(videoId);
-            const video = videoOverlay.querySelector('video');
-
-            // Mute the video
-            video.muted = true;
-
-            // Show the video overlay
-            videoOverlay.classList.remove('hidden');
-
-            // Play the video from the beginning each time it's shown
-            video.currentTime = 0;
-            video.play();
-
-            // Add event listener to skip video when clicked or tapped
-            videoOverlay.addEventListener('click', function() {
-                // Redirect to the chat page
-                window.location.href = redirectUrl;
-            });
-
-            // Redirect to the chat page after the video ends (if not clicked or tapped)
-            video.onended = function() {
-                if (!videoOverlay.classList.contains('hidden')) {
-                    videoOverlay.classList.add('hidden');
-                    window.location.href = redirectUrl;
-                }
-            };
-
-            // Prevent the default link behavior
-            return false;
-        }
-
- function toggleMusic() {
+        function toggleMusic() {
             var audio = document.querySelector('.music-player audio');
             var button = document.querySelector('.music-player button');
 
@@ -813,6 +774,7 @@ document.addEventListener('click', function(event) {
         activeBox.classList.remove('active');
     }
 });
+    
     </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for, flash
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash,session
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
@@ -9,6 +9,10 @@ import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import os
 
+last_index_page = "index"
+def logo_click():
+    global last_index_page
+    return redirect(url_for(last_index_page))
 # Configure the Flask application
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key')  # Ensure to replace 'your_secret_key' with a real key or set it in your environment
@@ -109,11 +113,32 @@ def initialize_chat_session(character_name):
 # Routes
 @app.route('/')
 def index():
-    return render_template('index.html', characters=characters)
+    session['last_index_page'] = 'index'
+    return render_template('index.html')
 
 @app.route('/index2.html')
 def index2():
-    return render_template('index2.html', characters=characters)
+    session['last_index_page'] = 'index2'
+    return render_template('index2.html')
+
+@app.route('/index3.html')
+def index3():
+    session['last_index_page'] = 'index3'
+    return render_template('index3.html')
+
+@app.route('/index4.html')
+def index4():
+    session['last_index_page'] = 'index4'
+    return render_template('index4.html')
+
+@app.route('/character_page')
+def character_page():
+    return render_template('character_page.html')
+
+@app.route('/logo_click')
+def logo_click():
+    last_index_page = session.get('last_index_page', 'index')
+    return redirect(url_for(last_index_page))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -171,6 +196,18 @@ def chat_response():
 
     # Return the AI's response as JSON
     return jsonify({'response': response_text})
+
+# @app.route('/logo_click')
+# def logo_click():
+#     global last_index_page
+#     return redirect(url_for(last_index_page))
+
+@app.route('/update_last_index/<page>')
+def update_last_index(page):
+    global last_index_page
+    if page in ["index", "index2"]:
+        last_index_page = page
+    return '', 204  # No content response
 
 if __name__ == '__main__':
     app.run(debug=True)
