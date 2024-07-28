@@ -1,9 +1,9 @@
 Flask==2.3.2
 Flask-SQLAlchemy==3.0.4
 Flask-Bcrypt==1.0.1
-Flask-Login==1.0.0
-Flask-WTF==1.0.0
-WTForms==3.0.3
+Flask-Login==0.6.3
+Flask-WTF==1.2.1
+WTForms==3.2.1
 google-generativeai==0.4.0
 Gunicorn
 Werkzeug>=2.2.2
