@@ -7,7 +7,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
-import os
+# import os
 from urllib.parse import quote
 
 
@@ -21,7 +21,7 @@ def logo_click():
     return redirect(url_for(last_index_page))
 # Configure the Flask application
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key')  # Ensure to replace 'your_secret_key' with a real key or set it in your environment
+# app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key')  # Ensure to replace 'your_secret_key' with a real key or set it in your environment
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 db = SQLAlchemy(app)
