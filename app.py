@@ -7,7 +7,12 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
-import os
+# import os
+
+
+
+#render
+
 
 last_index_page = "index"
 def logo_click():
@@ -209,5 +214,5 @@ def update_last_index(page):
         last_index_page = page
     return '', 204  # No content response
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
