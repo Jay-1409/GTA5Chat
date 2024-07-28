@@ -8,6 +8,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 # import os
+from urllib.parse import quote
 
 
 
