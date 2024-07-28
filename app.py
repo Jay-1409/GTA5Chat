@@ -7,7 +7,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
-# import os
+import os
 from urllib.parse import quote
 
 
