@@ -5,65 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('/static/images/loginback1.png');
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-        }
-        .login-container {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            width: 300px;
-            text-align: center;
-            color: #fff;
-        }
-        .login-container h2 {
-            margin-bottom: 20px;
-        }
-        .login-container form div {
-            margin-bottom: 15px;
-        }
-        .login-container label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .login-container input[type="text"], 
-        .login-container input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .login-container .error {
-            color: red;
-            font-size: 14px;
-        }
-        .login-container button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .login-container button:hover {
-            background-color: #45a049;
-        }
-        .login-container .remember {
-            display: flex;
-            align-items: center;
-        }
-        .login-container .remember label {
-            margin-left: 5px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/static/images/loginback1.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.login-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px 40px; /* Adjusted padding for better spacing */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 90%; /* Responsive width */
+    max-width: 400px; /* Max width for larger screens */
+    text-align: center;
+    color: #fff;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.login-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    animation: fadeInDown 0.5s ease-in-out;
+}
+
+.login-container form div {
+    margin-bottom: 15px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.login-container input[type="text"], 
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding doesn't affect overall width */
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.login-container input[type="text"]:focus, 
+.login-container input[type="password"]:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+    outline: none;
+}
+
+.login-container .error {
+    color: red;
+    font-size: 14px;
+}
+
+.login-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.login-container button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.login-container .remember {
+    display: flex;
+    align-items: center;
+}
+
+.login-container .remember label {
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .login-container {
+        padding: 20px 20px;
+    }
+}
+
     </style>
 </head>
 <body>
