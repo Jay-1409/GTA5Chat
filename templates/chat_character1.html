@@ -5,8 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with {{ character }}</title>
     <style>
+    @font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+}
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+    font-style: italic;
+}
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: monospace;
+            font-family:'CustomFont2';
+            font-size:130%;
             background-image: url('/static/images/{{ character }}nback.jpg');
             background-size: cover;
             margin: 0;
@@ -43,24 +78,111 @@
             margin: 0;
             font-size: 24px;
             margin-right: 50px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .header-buttons {
+            display: flex;
+            align-items: center;
         }
 
         .toggle-switch {
-            display: flex;
-            align-items: center;
-            font-size: 16px;
+            margin-left: 10px;
+            background-color: rgba(72, 61, 139, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
         }
 
         .toggle-switch a {
-            color: #4CAF50;
+            color: #FFD700;
             text-decoration: underline;
+            transition: color 0.3s ease-in-out;
         }
 
-        .logout-button {}
+        .toggle-switch:hover {
+            background-color: rgba(75, 0, 130, 0.8);
+        }
+
+        .toggle-switch a:hover {
+            color: #FF4500;
+        }
+
+        .logout-button {
+            margin-left: 10px;
+            margin-right: 30px;
+            background-color: rgba(139, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
 
         .logout-button a {
-            color: #4CAF50;
+            color: #FFD700;
             text-decoration: underline;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .logout-button:hover {
+            background-color: rgba(178, 34, 34, 0.8);
+        }
+
+        .logout-button a:hover {
+            color: #FF4500;
+        }
+
+        .table {
+            position: fixed;
+            left: 0;
+            top: 85px; /* Adjust to avoid overlap with header */
+            width: 500px;
+            height: 100px;
+            background-color: #d4e5ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.30);
+            z-index: 999;
+        }
+
+        .monitor-wrapper {
+            background: #050321;
+            width: 90%;
+            height: 5   0%;
+            box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.30);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .monitor {
+            width: 90%;
+            height: 40%;
+            background-color: #344151;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: inset 0px 5px 10px 2px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .monitor p {
+            font-family:'CustomFont','VT323', monospace;
+            font-size: 50px;
+            position: relative;
+            display: inline-block;
+            animation: move 20s infinite linear;
+            color: #EBB55F;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
         }
 
         #chatbox {
@@ -107,10 +229,56 @@
             background-color: #4CAF50;
             color: white;
             cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
         }
 
         button:hover {
             background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            #header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #header h1 {
+                margin-right: 0;
+                font-size: 20px;
+            }
+
+            .header-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .toggle-switch, .logout-button {
+                margin: 5px 0;
+            }
+
+            #userInput {
+                width: calc(100% - 70px);
+            }
+
+            .table {
+                width: 100%;
+                height: auto;
+                top: 60px; /* Adjust for mobile */
+            }
+
+            .monitor-wrapper {
+                width: 100%;
+                height: auto;
+            }
+
+            .monitor {
+                width: 100%;
+                height: auto;
+            }
+
+            .monitor p {
+                font-size: 30px;
+            }
         }
     </style>
 </head>
@@ -118,16 +286,26 @@
     <div id="header">
         <a href="{{ url_for('logo_click') }}">
             <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
-        </a>        
+        </a>
         <h1>Welcome to Los Santos</h1>
-        <div class="toggle-switch">
-            <a href="/video1" style="color: #4CAF50; text-decoration: double; margin-right: 10px;">Video Map</a>
-        </div>
-        <div class="logout-button">
-            <a href="/logout" style="color: #4CAF50; text-decoration: double; margin-right: 70px;">Logout</a>
+        <div class="header-buttons">
+            <div class="toggle-switch">
+                <a href="/video1">Video Map</a>
+            </div>
+            <div class="logout-button">
+                <a href="/logout">Logout</a>
+            </div>
         </div>
     </div>
-    <h1>Chat with {{ character }}</h1>
+
+    <div class="table">
+        <div class="monitor-wrapper">
+            <div class="monitor">
+                <p>Chat with {{ character }}</p>
+            </div>
+        </div>
+    </div>
+
     <div id="chatbox">
         <div id="messages">
             <!-- Messages will be dynamically populated here -->
@@ -173,20 +351,6 @@
             })
             .catch(error => console.error('Error sending message:', error));
         }
-
-        // Hide header after 3 seconds
-        setTimeout(() => {
-            document.getElementById('header').style.top = '-60px';
-        }, 3000);
-
-        // Show header when mouse moves to the top
-        document.addEventListener('mousemove', (event) => {
-            if (event.clientY <= 60) {
-                document.getElementById('header').style.top = '0';
-            } else {
-                document.getElementById('header').style.top = '-60px';
-            }
-        });
     </script>
 </body>
 </html>

@@ -738,67 +738,161 @@ function playVideo(videoId, redirectUrl) {
 
 
 
+ function playDayVideo1() {
+    const dayVideoOverlay = document.getElementById('day-video');
+    const dayVideo = dayVideoOverlay.querySelector('video');
+    dayVideo.muted = true;
 
-        function playDayVideo1() {
-            const dayVideoOverlay = document.getElementById('day-video');
-            const dayVideo = dayVideoOverlay.querySelector('video');
-            dayVideo.muted=true;
-            // Show the day video overlay
-            dayVideoOverlay.classList.remove('hidden');
+    // Remove existing skip text
+    const existingSkipText = document.getElementById('skip-text');
+    if (existingSkipText) {
+        existingSkipText.remove();
+    }
 
-            // Play the day video from the beginning each time it's shown
-            dayVideo.currentTime = 0; // Reset video to start
-            dayVideo.play();
+    // Create and style the "Tap to Skip" text
+    let skipText = document.createElement('div');
+    skipText.id = 'skip-text';
+    skipText.textContent = 'Tap to Skip';
+    skipText.style.position = 'absolute';
+    skipText.style.bottom = '20px';
+    skipText.style.width = '100%';
+    skipText.style.textAlign = 'center';
+    skipText.style.color = 'white';
+    skipText.style.fontSize = '20px';
+    skipText.style.pointerEvents = 'none'; // Allow clicks through this element
 
-            // Redirect to index2.html after the day video ends
-            dayVideo.onended = function() {
-                dayVideoOverlay.classList.add('hidden');
-                window.location.href = '/index2.html';
-            };
+    dayVideoOverlay.appendChild(skipText);
 
-            // Prevent the default link behavior
-            return false;
-        }
-                function playDayVideo2() {
-            const dayVideoOverlay = document.getElementById('day-video');
-            const dayVideo = dayVideoOverlay.querySelector('video');
-            dayVideo.muted=true;
-            // Show the day video overlay
-            dayVideoOverlay.classList.remove('hidden');
+    // Show the day video overlay
+    dayVideoOverlay.classList.remove('hidden');
 
-            // Play the day video from the beginning each time it's shown
-            dayVideo.currentTime = 0; // Reset video to start
-            dayVideo.play();
+    // Play the day video from the beginning each time it's shown
+    dayVideo.currentTime = 0;
+    dayVideo.play();
 
-            // Redirect to index2.html after the day video ends
-            dayVideo.onended = function() {
-                dayVideoOverlay.classList.add('hidden');
-                window.location.href = '/index3.html';
-            };
+    // Redirect to index2.html after the day video ends
+    dayVideo.onended = function() {
+        dayVideoOverlay.classList.add('hidden');
+        window.location.href = '/index2.html';
+    };
 
-            // Prevent the default link behavior
-            return false;
-        }
-                function playDayVideo3() {
-            const dayVideoOverlay = document.getElementById('day-video');
-            const dayVideo = dayVideoOverlay.querySelector('video');
-            dayVideo.muted=true;
-            // Show the day video overlay
-            dayVideoOverlay.classList.remove('hidden');
+    // Add event listener to video overlay
+    dayVideoOverlay.addEventListener('click', function() {
+        // Hide the video overlay and skip message
+        dayVideoOverlay.classList.add('hidden');
+        dayVideoOverlay.removeChild(skipText);
+        
+        // Redirect to the chat page
+        window.location.href = '/index2.html';
+    });
 
-            // Play the day video from the beginning each time it's shown
-            dayVideo.currentTime = 0; // Reset video to start
-            dayVideo.play();
+    // Prevent the default link behavior
+    return false;
+}
 
-            // Redirect to index2.html after the day video ends
-            dayVideo.onended = function() {
-                dayVideoOverlay.classList.add('hidden');
-                window.location.href = '/index4.html';
-            };
+function playDayVideo2() {
+    const dayVideoOverlay = document.getElementById('day-video');
+    const dayVideo = dayVideoOverlay.querySelector('video');
+    dayVideo.muted = true;
 
-            // Prevent the default link behavior
-            return false;
-        }
+    // Remove existing skip text
+    const existingSkipText = document.getElementById('skip-text');
+    if (existingSkipText) {
+        existingSkipText.remove();
+    }
+
+    // Create and style the "Tap to Skip" text
+    let skipText = document.createElement('div');
+    skipText.id = 'skip-text';
+    skipText.textContent = 'Tap to Skip';
+    skipText.style.position = 'absolute';
+    skipText.style.bottom = '20px';
+    skipText.style.width = '100%';
+    skipText.style.textAlign = 'center';
+    skipText.style.color = 'white';
+    skipText.style.fontSize = '20px';
+    skipText.style.pointerEvents = 'none'; // Allow clicks through this element
+
+    dayVideoOverlay.appendChild(skipText);
+
+    // Show the day video overlay
+    dayVideoOverlay.classList.remove('hidden');
+
+    // Play the day video from the beginning each time it's shown
+    dayVideo.currentTime = 0;
+    dayVideo.play();
+
+    // Redirect to index3.html after the day video ends
+    dayVideo.onended = function() {
+        dayVideoOverlay.classList.add('hidden');
+        window.location.href = '/';
+    };
+
+    // Add event listener to video overlay
+    dayVideoOverlay.addEventListener('click', function() {
+        // Hide the video overlay and skip message
+        dayVideoOverlay.classList.add('hidden');
+        dayVideoOverlay.removeChild(skipText);
+        
+        // Redirect to the chat page
+        window.location.href = '/';
+    });
+
+    // Prevent the default link behavior
+    return false;
+}
+
+function playDayVideo3() {
+    const dayVideoOverlay = document.getElementById('day-video');
+    const dayVideo = dayVideoOverlay.querySelector('video');
+    dayVideo.muted = true;
+
+    // Remove existing skip text
+    const existingSkipText = document.getElementById('skip-text');
+    if (existingSkipText) {
+        existingSkipText.remove();
+    }
+
+    // Create and style the "Tap to Skip" text
+    let skipText = document.createElement('div');
+    skipText.id = 'skip-text';
+    skipText.textContent = 'Tap to Skip';
+    skipText.style.position = 'absolute';
+    skipText.style.bottom = '20px';
+    skipText.style.width = '100%';
+    skipText.style.textAlign = 'center';
+    skipText.style.color = 'white';
+    skipText.style.fontSize = '20px';
+    skipText.style.pointerEvents = 'none'; // Allow clicks through this element
+
+    dayVideoOverlay.appendChild(skipText);
+
+    // Show the day video overlay
+    dayVideoOverlay.classList.remove('hidden');
+
+    // Play the day video from the beginning each time it's shown
+    dayVideo.currentTime = 0;
+    dayVideo.play();
+
+    // Redirect to index4.html after the day video ends
+    dayVideo.onended = function() {
+        dayVideoOverlay.classList.add('hidden');
+        window.location.href = '/index4.html';
+    };
+
+    // Add event listener to video overlay
+    dayVideoOverlay.addEventListener('click', function() {
+        // Hide the video overlay and skip message
+        dayVideoOverlay.classList.add('hidden');
+        dayVideoOverlay.removeChild(skipText);
+        
+        // Redirect to the chat page
+        window.location.href = '/index4.html';
+    });
+
+    // Prevent the default link behavior
+    return false;
+}
         function toggleMusic() {
             var audio = document.querySelector('.music-player audio');
             var button = document.querySelector('.music-player button');
