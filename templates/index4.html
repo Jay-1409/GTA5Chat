@@ -6,8 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Los Santos Legends Chat - Choose Your Legend</title>
     <style>
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+}
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+    font-style: italic;
+}
   body {
-    font-family: monospace;
+
+    font-family:'CustomFont2';
     background-image: url('/static/images/back4.jpg');
     background-size: cover;
     background-attachment: fixed;
@@ -49,7 +79,7 @@
 
 #header h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 60px;
     color: #fff;
     margin-right: 50px;
     animation: fadeIn 1s ease-in-out;
@@ -70,7 +100,7 @@
 .button-container a {
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 26px;
     padding: 12px 24px;
     border-radius: 12px;
     background-color: #4CAF50;
@@ -140,8 +170,8 @@
     background-color: #4CAF50;
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
-    padding: 12px 24px;
+    font-family:'CustomFont2';
+    font-size: 26px;    padding: 12px 24px;
     border-radius: 12px;
     border: 2px solid transparent;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -168,6 +198,8 @@
 
 /* Dropdown item styling */
 .dropdown-content a {
+    font-family:'CustomFont2';
+    font-size: 160%;
     color: #fff;
     padding: 12px 16px;
     text-decoration: none;
@@ -177,6 +209,7 @@
 }
 
 .dropdown-content a:hover {
+    font-size: 260%;
     background-color: #555;
     color: #fff;
 }
@@ -227,6 +260,7 @@
 }
 
 .character-box {
+    font-family: fantasy;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -590,7 +624,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dropdown Menu</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <!-- <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file --> -->
     <style>
         /* Include CSS styles from previous response here or link to a separate CSS file */
     </style>
@@ -737,7 +771,7 @@
 
         <div id="day-video" class="video-overlay hidden">
             <video autoplay>
-                <source src="https://github.com/Jay-1409/lemon/blob/main/static/Videos/set.mp4" type="video/mp4">
+                <source src="https://github.com/Jay-1409/lemon/raw/main/static/Videos/rise.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -782,6 +816,21 @@ function playVideo(videoId, redirectUrl) {
     const videoOverlay = document.getElementById(videoId);
     const video = videoOverlay.querySelector('video');
 
+    // Create the skip message element
+    const skipMessage = document.createElement('div');
+    skipMessage.innerText = 'Tap to skip';
+    skipMessage.style.position = 'absolute';
+    skipMessage.style.bottom = '20px';
+    skipMessage.style.left = '50%';
+    skipMessage.style.transform = 'translateX(-50%)';
+    skipMessage.style.padding = '10px 20px';
+    skipMessage.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    skipMessage.style.color = 'white';
+    skipMessage.style.fontSize = '18px';
+    skipMessage.style.borderRadius = '5px';
+    skipMessage.style.zIndex = '1001';
+    videoOverlay.appendChild(skipMessage);
+
     // Mute the video
     video.muted = true;
 
@@ -794,6 +843,10 @@ function playVideo(videoId, redirectUrl) {
 
     // Add event listener to skip video when clicked or tapped
     videoOverlay.addEventListener('click', function() {
+        // Hide the video overlay and message
+        videoOverlay.classList.add('hidden');
+        videoOverlay.removeChild(skipMessage);
+        
         // Redirect to the chat page
         window.location.href = redirectUrl;
     });
@@ -802,6 +855,7 @@ function playVideo(videoId, redirectUrl) {
     video.onended = function() {
         if (!videoOverlay.classList.contains('hidden')) {
             videoOverlay.classList.add('hidden');
+            videoOverlay.removeChild(skipMessage);
             window.location.href = redirectUrl;
         }
     };
@@ -809,6 +863,7 @@ function playVideo(videoId, redirectUrl) {
     // Prevent the default link behavior
     return false;
 }
+
 
 
 
