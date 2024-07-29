@@ -773,8 +773,13 @@ function toggleDropdown() {
             <div class="chat-link" onclick="playVideo('michael-video', '/chat/character13')">Chat with Steve</div>
         </div>
 
-        <!-- Hidden video elements -->
-        <div id="franklin-video" class="video-overlay hidden">
+        <div id="night-video" class="video-overlay hidden">
+            <video autoplay>
+                <source src="https://github.com/Jay-1409/lemon/blob/main/static/Videos/set.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+              <div id="franklin-video" class="video-overlay hidden">
             <video autoplay>
                 <source src="https://github.com/Jay-1409/lemon/raw/main/static/Videos/introclip1.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -797,7 +802,7 @@ function toggleDropdown() {
 
         <div id="day-video" class="video-overlay hidden">
             <video autoplay>
-                <source src="https://github.com/Jay-1409/lemon/raw/main/static/Videos/rise.mp4" type="video/mp4">
+                <source src="/static/videos/set.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -842,6 +847,21 @@ function playVideo(videoId, redirectUrl) {
     const videoOverlay = document.getElementById(videoId);
     const video = videoOverlay.querySelector('video');
 
+    // Create the skip message element
+    const skipMessage = document.createElement('div');
+    skipMessage.innerText = 'Tap to skip';
+    skipMessage.style.position = 'absolute';
+    skipMessage.style.bottom = '20px';
+    skipMessage.style.left = '50%';
+    skipMessage.style.transform = 'translateX(-50%)';
+    skipMessage.style.padding = '10px 20px';
+    skipMessage.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    skipMessage.style.color = 'white';
+    skipMessage.style.fontSize = '18px';
+    skipMessage.style.borderRadius = '5px';
+    skipMessage.style.zIndex = '1001';
+    videoOverlay.appendChild(skipMessage);
+
     // Mute the video
     video.muted = true;
 
@@ -854,6 +874,10 @@ function playVideo(videoId, redirectUrl) {
 
     // Add event listener to skip video when clicked or tapped
     videoOverlay.addEventListener('click', function() {
+        // Hide the video overlay and message
+        videoOverlay.classList.add('hidden');
+        videoOverlay.removeChild(skipMessage);
+        
         // Redirect to the chat page
         window.location.href = redirectUrl;
     });
@@ -862,6 +886,7 @@ function playVideo(videoId, redirectUrl) {
     video.onended = function() {
         if (!videoOverlay.classList.contains('hidden')) {
             videoOverlay.classList.add('hidden');
+            videoOverlay.removeChild(skipMessage);
             window.location.href = redirectUrl;
         }
     };
@@ -869,6 +894,7 @@ function playVideo(videoId, redirectUrl) {
     // Prevent the default link behavior
     return false;
 }
+
 
 
 
