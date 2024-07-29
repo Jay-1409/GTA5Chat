@@ -6,8 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Los Santos Legends Chat - Choose Your Legend</title>
     <style>
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+}
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+    font-style: italic;
+}
    body {
-    font-family: monospace;
+    font-family:'CustomFont2';
     background-image: url('/static/images/back1.jpg');
     background-size: cover;
     background-attachment: fixed;
@@ -19,7 +48,6 @@
     overflow-x: hidden; /* Prevent horizontal scroll bar */
     transition: background-image 0.5s ease-in-out;
 }
-
 /* Modern CSS for Header */
 #header {
     background-color: rgba(0, 0, 0, 0.8);
@@ -46,10 +74,12 @@
     filter: drop-shadow(0 0 15px white);
     transform: scale(1.1);
 }
-
+#header .heading {
+    font-size: 50px; /* Match the body font size */
+}
 #header h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 60px;
     color: #fff;
     margin-right: 50px;
     animation: fadeIn 1s ease-in-out;
@@ -70,7 +100,7 @@
 .button-container a {
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 26px;
     padding: 12px 24px;
     border-radius: 12px;
     background-color: #4CAF50;
@@ -140,7 +170,8 @@
     background-color: #4CAF50;
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
+    font-family:'CustomFont2';
+    font-size: 26px;
     padding: 12px 24px;
     border-radius: 12px;
     border: 2px solid transparent;
@@ -154,6 +185,8 @@
 
 /* Dropdown menu styling */
 .dropdown-content {
+    font-family:'CustomFont2';
+    font-size: 46px;
     display: none;
     position: absolute;
     top: 100%;
@@ -168,6 +201,8 @@
 
 /* Dropdown item styling */
 .dropdown-content a {
+    font-size: 30px;
+
     color: #fff;
     padding: 12px 16px;
     text-decoration: none;
@@ -227,6 +262,7 @@
 }
 
 .character-box {
+    font-family: fantasy;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -630,7 +666,7 @@ span:nth-child(9){
 <body>
     <div id="header">
         <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
-        <div class = "jumptext">
+        <div class = "heading">
             <h1>Welcome to Los Santos</h1>
         </div>
         <div class="header-buttons">
