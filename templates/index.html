@@ -636,6 +636,9 @@ span:nth-child(9){
     animation-delay: 2.75s;
     animation-duration: 2.75s;
 }
+/* styles.css */
+
+
 
     </style>
 </head>
@@ -671,7 +674,7 @@ span:nth-child(9){
         </div>
         <div class="header-buttons">
             <div class="button-container toggle-switch">
-                <a href="/video1">Video Map</a>
+                <a href="/Character_cards">Character Cards</a>
             </div>
 
             <div class="button-container night-button">
@@ -690,7 +693,32 @@ span:nth-child(9){
             </div>
         </div>
     </div>
+    <div class="network-warning">
+        <p>In case of poor network, the videos might not play. Please tap to skip the wait.</p>
+    </div>
+    <style>
+        .network-warning {
+            font-family: monospace;
+            position: fixed; /* Change to fixed to stay at the bottom of the viewport */
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            background-color:turquoise;
+            color: #333; /* Dark text color for contrast */
+            padding: 0.1% 0.2%;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            text-align: center;
+            z-index: 1000; /* Ensure it's above other content */
+        }
 
+        .network-warning p {
+            margin: 0 0 10px; /* Margin below the text */
+            font-size: 16px; /* Text size */
+        }
+
+    </style>
 <script>
 function toggleDropdown() {
     var dropdownContent = document.querySelector('.dropdown-content');
@@ -839,8 +867,8 @@ function toggleDropdown() {
             characterBox.classList.remove('active');
             setTimeout(function() {
                 characterBox.style.display = 'none';
-            }, 500); // Match this with the transition duration
-        }, 5000);
+            }, 5000); // Match this with the transition duration
+        }, 50000);
     }
 
 function playVideo(videoId, redirectUrl) {
