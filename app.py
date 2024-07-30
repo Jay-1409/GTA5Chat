@@ -21,8 +21,8 @@ def logo_click():
     return redirect(url_for(last_index_page))
 # Configure the Flask application
 app = Flask(__name__)
-# app.config['SECRET_KEY'] = 'the random string'    
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key')  # Ensure to replace 'your_secret_key' with a real key or set it in your environment
+app.config['SECRET_KEY'] = 'the random string'    
+# app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key')  # Ensure to replace 'your_secret_key' with a real key or set it in your environment
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 db = SQLAlchemy(app)
@@ -220,5 +220,5 @@ def update_last_index(page):
         last_index_page = page
     return '', 204  # No content response
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
