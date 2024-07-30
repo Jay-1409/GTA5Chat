@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Cards</title>
+    <style>
+    @font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+}
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+    font-style: italic;
+}
+body {
+    font-family: 'CustomFont2', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    background-image: url('/static/images/character_pageback.jpg');
+    background width: 100%;
+    background height: 100%;
+/*    background-size: cover;*/
+    background-position: center center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed; /* Keep the background fixed during scroll */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 100vh; /* Ensure the background covers the full viewport height */
+
+}
+#header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    animation: slideDown 0.5s ease-in-out;
+}
+
+#header img {
+    width: 60px;
+    height: auto;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+#header img:hover {
+    filter: drop-shadow(0 0 15px white);
+    transform: scale(1.1);
+}
+#header .heading {
+    font-size: 50px; /* Match the body font size */
+}
+#header h1 {
+    margin: 0;
+    font-size: 60px;
+    color: #fff;
+    margin-right: 50px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Container for button groups */
+.header-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+/* Container for individual buttons */
+.button-container {
+    position: relative;
+}
+
+/* General button styling */
+.button-container a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 26px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    background-color: #4CAF50;
+    border: 2px solid transparent;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+.button-container a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.button-container a:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.button-container a:hover {
+    background-color: #388E3C;
+    color: #fff;
+    border-color: #388E3C;
+    transform: translateY(-2px);
+}
+
+/* Specific styling for individual buttons */
+.toggle-switch a {
+    background-color: #4CAF50;
+}
+
+.night-button a {
+    background-color: #333;
+}
+
+.logout-button a {
+    background-color: #F44336;
+}
+
+/* Adjusting text color for specific buttons */
+.toggle-switch a:hover {
+    color: #fff;
+}
+
+.night-button a:hover {
+    color: #fff;
+}
+
+.logout-button a:hover {
+    color: #fff;
+}
+
+/* Hide scrollbars but allow scrolling */
+.hide-scrollbars {
+    overflow: hidden;
+    /* Optional: For better cross-browser support */
+    overflow-y: scroll; /* or overflow-x: scroll; depending on which axis you want to scroll */
+}
+
+.snowflake {
+  --size: 1vw;
+  width: var(--size);
+  height: var(--size);
+  background: whitesmoke;
+  border-radius: 50%;
+  position: absolute;
+  top: -5vh;
+  z-index: 9999;
+  animation: snowfall 100s linear infinite; /* Add animation property if not already present */
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(var(--left-ini), 0, 0);
+  }
+  100% {
+    transform: translate3d(var(--left-end), 450vh, 0); 
+  }
+}
+
+.snowflake:nth-child(1) {
+  --size: 0.8vw;
+  --left-ini: 4vw;
+  --left-end: 2vw;
+  left: 55vw;
+  animation: snowfall 14s linear infinite;
+  animation-delay: -8s;
+}
+
+.snowflake:nth-child(2) {
+  --size: 0.8vw;
+  --left-ini: 5vw;
+  --left-end: 5vw;
+  left: 63vw;
+  animation: snowfall 6s linear infinite;
+  animation-delay: -7s;
+}
+
+.snowflake:nth-child(3) {
+  --size: 0.2vw;
+  --left-ini: 0vw;
+  --left-end: -3vw;
+  left: 17vw;
+  animation: snowfall 11s linear infinite;
+  animation-delay: -7s;
+}
+
+.snowflake:nth-child(4) {
+  --size: 0.2vw;
+  --left-ini: -5vw;
+  --left-end: 10vw;
+  left: 66vw;
+  animation: snowfall 10s linear infinite;
+  animation-delay: -5s;
+}
+
+.snowflake:nth-child(5) {
+  --size: 0.6vw;
+  --left-ini: -6vw;
+  --left-end: 3vw;
+  left: 39vw;
+  animation: snowfall 11s linear infinite;
+  animation-delay: -6s;
+}
+
+.snowflake:nth-child(6) {
+  --size: 0.4vw;
+  --left-ini: 2vw;
+  --left-end: 3vw;
+  left: 86vw;
+  animation: snowfall 8s linear infinite;
+  animation-delay: -1s;
+}
+
+.snowflake:nth-child(7) {
+  --size: 0.2vw;
+  --left-ini: -1vw;
+  --left-end: 7vw;
+  left: 87vw;
+  animation: snowfall 6s linear infinite;
+  animation-delay: -2s;
+}
+
+.snowflake:nth-child(8) {
+  --size: 0.6vw;
+  --left-ini: -3vw;
+  --left-end: 3vw;
+  left: 77vw;
+  animation: snowfall 15s linear infinite;
+  animation-delay: -7s;
+}
+
+.snowflake:nth-child(9) {
+  --size: 0.8vw;
+  --left-ini: -4vw;
+  --left-end: -5vw;
+  left: 50vw;
+  animation: snowfall 6s linear infinite;
+  animation-delay: -1s;
+}
+
+.snowflake:nth-child(10) {
+  --size: 0.8vw;
+  --left-ini: 1vw;
+  --left-end: -1vw;
+  left: 34vw;
+  animation: snowfall 12s linear infinite;
+  animation-delay: -5s;
+}
+
+.snowflake:nth-child(11) {
+  --size: 1vw;
+  --left-ini: 4vw;
+  --left-end: 4vw;
+  left: 29vw;
+  animation: snowfall 11s linear infinite;
+  animation-delay: -1s;
+}
+
+.snowflake:nth-child(12) {
+  --size: 0.4vw;
+  --left-ini: 9vw;
+  --left-end: -1vw;
+  left: 100vw;
+  animation: snowfall 11s linear infinite;
+  animation-delay: -8s;
+}
+
+.snowflake:nth-child(13) {
+  --size: 0.4vw;
+  --left-ini: 8vw;
+  --left-end: -2vw;
+  left: 86vw;
+  animation: snowfall 10s linear infinite;
+  animation-delay: -3s;
+}
+
+.snowflake:nth-child(14) {
+  --size: 0.8vw;
+  --left-ini: -1vw;
+  --left-end: -1vw;
+  left: 18vw;
+  animation: snowfall 8s linear infinite;
+  animation-delay: -10s;
+}
+
+.snowflake:nth-child(15) {
+  --size: 0.8vw;
+  --left-ini: 0vw;
+  --left-end: 10vw;
+  left: 35vw;
+  animation: snowfall 15s linear infinite;
+  animation-delay: -8s;
+}
+
+.snowflake:nth-child(16) {
+  --size: 1vw;
+  --left-ini: 10vw;
+  --left-end: -5vw;
+  left: 23vw;
+  animation: snowfall 6s linear infinite;
+  animation-delay: -6s;
+}
+
+.snowflake:nth-child(17) {
+  --size: 0.8vw;
+  --left-ini: -3vw;
+  --left-end: 1vw;
+  left: 89vw;
+  animation: snowfall 9s linear infinite;
+  animation-delay: -7s;
+}
+
+.snowflake:nth-child(18) {
+  --size: 0.8vw;
+  --left-ini: 8vw;
+  --left-end: 6vw;
+  left: 33vw;
+  animation: snowfall 9s linear infinite;
+  animation-delay: -1s;
+}
+
+.snowflake:nth-child(19) {
+  --size: 0.6vw;
+  --left-ini: -1vw;
+  --left-end: 1vw;
+  left: 26vw;
+  animation: snowfall 6s linear infinite;
+  animation-delay: -5s;
+}
+
+.snowflake:nth-child(20) {
+  --size: 0.4vw;
+  --left-ini: 7vw;
+  --left-end: -9vw;
+  left: 75vw;
+  animation: snowfall 13s linear infinite;
+  animation-delay: -8s;
+}
+
+.snowflake:nth-child(21) {
+  --size: 0.2vw;
+  --left-ini: -2vw;
+  --left-end: -7vw;
+  left: 81vw;
+  animation: snowfall 14s linear infinite;
+  animation-delay: -1s;
+}
+
+.snowflake:nth-child(22) {
+  --size: 0.6vw;
+  --left-ini: 9vw;
+  --left-end: -7vw;
+  left: 75vw;
+  animation: snowfall 11s linear infinite;
+  animation-delay: -7s;
+}
+
+.snowflake:nth-child(23) {
+  --size: 0.2vw;
+  --left-ini: 7vw;
+  --left-end: -9vw;
+  left: 28vw;
+  animation: snowfall 12s linear infinite;
+  animation-delay: -9s;
+}
+
+.snowflake:nth-child(24) {
+  --size: 1vw;
+  --left-ini: 5vw;
+  --left-end: 8vw;
+  left: 17vw;
+  animation: snowfall 6s linear infinite;
+  animation-delay: -6s;
+}
+
+.snowflake:nth-child(25) {
+  --size: 0.8vw;
+  --left-ini: -7vw;
+  --left-end: 5vw;
+  left: 29vw;
+  animation: snowfall 6s linear infinite;
+  animation-delay: -9s;
+}
+
+.snowflake:nth-child(26) {
+  --size: 0.8vw;
+  --left-ini: 10vw;
+  --left-end: -8vw;
+  left: 19vw;
+  animation: snowfall 13s linear infinite;
+  animation-delay: -9s;
+}
+
+.snowflake:nth-child(27) {
+  --size: 1vw;
+  --left-ini: 5vw;
+  --left-end: 7vw;
+  left: 71vw;
+  animation: snowfall 7s linear infinite;
+  animation-delay: -1s;
+}
+
+.snowflake:nth-child(28) {
+  --size: 0.8vw;
+  --left-ini: -2vw;
+  --left-end: 5vw;
+  left: 96vw;
+  animation: snowfall 14s linear infinite;
+  animation-delay: -5s;
+}
+
+.snowflake:nth-child(29) {
+  --size: 0.4vw;
+  --left-ini: 8vw;
+  --left-end: -5vw;
+  left: 67vw;
+  animation: snowfall 15s linear infinite;
+  animation-delay: -1s;
+}
+
+.snowflake:nth-child(30) {
+  --size: 0.4vw;
+  --left-ini: 9vw;
+  --left-end: -1vw;
+  left: 14vw;
+  animation: snowfall 11s linear infinite;
+  animation-delay: -1s;
+}
+
+.snowflake:nth-child(31) {
+  --size: 0.8vw;
+  --left-ini: 9vw;
+  --left-end: -6vw;
+  left: 38vw;
+  animation: snowfall 8s linear infinite;
+  animation-delay: -7s;
+}
+
+.snowflake:nth-child(32) {
+  --size: 0.2vw;
+  --left-ini: -1vw;
+  --left-end: -3vw;
+  left: 96vw;
+  animation: snowfall 9s linear infinite;
+  animation-delay: -10s;
+}
+
+.snowflake:nth-child(33) {
+  --size: 0.6vw;
+  --left-ini: 1vw;
+  --left-end: 0vw;
+  left: 10vw;
+  animation: snowfall 12s linear infinite;
+  animation-delay: -5s;
+}
+
+.snowflake:nth-child(34) {
+  --size: 0.6vw;
+  --left-ini: 8vw;
+  --left-end: -9vw;
+  left: 73vw;
+  animation: snowfall 10s linear infinite;
+  animation-delay: -2s;
+}
+
+.snowflake:nth-child(35) {
+  --size: 0.6vw;
+  --left-ini: 10vw;
+  --left-end: -8vw;
+  left: 53vw;
+  animation: snowfall 9s linear infinite;
+  animation-delay: -2s;
+}
+
+.snowflake:nth-child(36) {
+  --size: 0.8vw;
+  --left-ini: 1vw;
+  --left-end: -7vw;
+  left: 62vw;
+  animation: snowfall 8s linear infinite;
+  animation-delay: -9s;
+}
+
+.snowflake:nth-child(37) {
+  --size: 0.2vw;
+  --left-ini: -4vw;
+  --left-end: 8vw;
+  left: 47vw;
+  animation: snowfall 11s linear infinite;
+  animation-delay: -7s;
+}
+
+.snowflake:nth-child(38) {
+  --size: 0.8vw;
+  --left-ini: 5vw;
+  --left-end: 5vw;
+  left: 4vw;
+  animation: snowfall 12s linear infinite;
+  animation-delay: -1s;
+}
+
+.snowflake:nth-child(39) {
+  --size: 0.8vw;
+  --left-ini: 3vw;
+  --left-end: -2vw;
+  left: 29vw;
+  animation: snowfall 7s linear infinite;
+  animation-delay: -9s;
+}
+
+.snowflake:nth-child(40) {
+  --size: 1vw;
+  --left-ini: -5vw;
+  --left-end: -6vw;
+  left: 65vw;
+  animation: snowfall 13s linear infinite;
+  animation-delay: -9s;
+}
+
+.snowflake:nth-child(41) {
+  --size: 0.6vw;
+  --left-ini: -6vw;
+  --left-end: 3vw;
+  left: 52vw;
+  animation: snowfall 10s linear infinite;
+  animation-delay: -10s;
+}
+
+.snowflake:nth-child(42) {
+  --size: 0.2vw;
+  --left-ini: 5vw;
+  --left-end: -9vw;
+  left: 48vw;
+  animation: snowfall 13s linear infinite;
+  animation-delay: -5s;
+}
+
+.snowflake:nth-child(43) {
+  --size: 1vw;
+  --left-ini: 0vw;
+  --left-end: -3vw;
+  left: 44vw;
+  animation: snowfall 6s linear infinite;
+  animation-delay: -5s;
+}
+
+.snowflake:nth-child(44) {
+  --size: 0.4vw;
+  --left-ini: 5vw;
+  --left-end: 7vw;
+  left: 20vw;
+  animation: snowfall 7s linear infinite;
+  animation-delay: -10s;
+}
+
+.snowflake:nth-child(45) {
+  --size: 0.8vw;
+  --left-ini: 4vw;
+  --left-end: 7vw;
+  left: 78vw;
+  animation: snowfall 6s linear infinite;
+  animation-delay: -8s;
+}
+
+.snowflake:nth-child(46) {
+  --size: 0.4vw;
+  --left-ini: -4vw;
+  --left-end: 3vw;
+  left: 63vw;
+  animation: snowfall 7s linear infinite;
+  animation-delay: -5s;
+}
+
+.snowflake:nth-child(47) {
+  --size: 0.6vw;
+  --left-ini: -7vw;
+  --left-end: -7vw;
+  left: 19vw;
+  animation: snowfall 10s linear infinite;
+  animation-delay: -10s;
+}
+
+.snowflake:nth-child(48) {
+  --size: 0.8vw;
+  --left-ini: -4vw;
+  --left-end: 4vw;
+  left: 47vw;
+  animation: snowfall 6s linear infinite;
+  animation-delay: -10s;
+}
+
+.snowflake:nth-child(49) {
+  --size: 0.2vw;
+  --left-ini: 10vw;
+  --left-end: -1vw;
+  left: 43vw;
+  animation: snowfall 11s linear infinite;
+  animation-delay: -8s;
+}
+
+.snowflake:nth-child(50) {
+  --size: 0.6vw;
+  --left-ini: -4vw;
+  --left-end: 7vw;
+  left: 86vw;
+  animation: snowfall 9s linear infinite;
+  animation-delay: -2s;
+}
+
+/* added small blur every 6 snowflakes*/
+.snowflake:nth-child(6n) {
+  filter: blur(1px);
+}
+
+/***/
+#youtube {
+  z-index: 2;
+  display: block;
+  width: 100px;
+  height: 70px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  border-radius: 50%/11%;
+  transition: transform 0.5s;
+}
+
+#youtube:hover,
+#youtube:focus {
+  transform: scale(1.1);
+}
+
+#youtube::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 7.5%;
+  left: -6%;
+  width: 112%;
+  height: 85%;
+  background: red;
+  border-radius: 9%/50%;
+}
+
+#youtube::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  width: 45px;
+  height: 30px;
+  border: 15px solid transparent;
+  box-sizing: border-box;
+  border-left: 30px solid white;
+}
+
+#youtube span {
+  font-size: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.box {
+/*    background-color: blue;*/
+    position: absolute; /* Ensures that the box is positioned absolutely within the page */
+    top: top;
+    left: 0;
+    width: 100vw; /* Full width of the viewport */
+    height: 900vh; /* Full height of the viewport */
+    overflow: hidden; /* Hide any overflowing parts of the SVG */
+    z-index: 9999; /* High value to ensure it's on top */
+}
+
+.box svg {
+    position: absolute; /* Absolutely position the SVG within the box */
+    top: 0;
+    left: 0;
+    width: 100%; /* Make SVG fill the width of the box */
+    height: 100%; /* Make SVG fill the height of the box */
+    margin: 0; /* Reset margin to ensure full coverage */
+    z-index: inherit; /* Use the z-index from the parent box */
+}
+
+
+        .character-container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .character-box {
+            font-family: fantasy;
+            position: relative;
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            overflow: hidden; /* Ensure the border animation is contained */
+        }
+
+        .character-box.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .character-img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .character-name {
+            font-size: 24px;
+            margin-top: 15px;
+        }
+
+        .character-description {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .chat-link {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #1976ed;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Glow Border Animation */
+        .character-box:before, .character-box-glow:before {
+            content: '';
+            z-index: -2;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            position: absolute;
+            width: 99999px;
+            height: 99999px;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            background-image: conic-gradient(rgba(0,0,0,0), #1976ed, rgba(0,0,0,0) 25%);
+            animation: rotate 4s linear infinite;
+        }
+
+        .character-box:after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            left: 5px;
+            top: 5px;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            background: #292a2e;
+            border-radius: 7px;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>   
+
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+<div class="snowflake"></div>
+</a>
+<div id="header">
+        <a href="{{ url_for('logo_click') }}">
+            <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
+        </a>        <div class = "heading">
+            <h1>Welcome to Los Santos</h1>
+        </div>
+        <div class="header-buttons">
+            <div class="button-container toggle-switch">
+                <a href="{{ url_for('logo_click') }}">Map</a>
+            </div>
+
+            <div class="button-container night-button">
+            </div>
+
+            <div class="button-container logout-button">
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    <style>
+        .hide-scrollbars {
+            overflow: hidden; /* Hide scrollbars and disable scrolling */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .hide-scrollbars::-webkit-scrollbar {
+            display: none; /* Webkit browsers */
+        }
+
+        .content {
+            height: 200px;
+            width: 200px;
+            background: #ddd;
+            overflow: auto;
+        }
+    </style>
+        <!-- Character boxes -->
+        <div id="character1" class="character-box">
+            <img src="/static/images/franklinfront.jpeg" alt="Franklin" class="character-img">
+            <div class="character-name">Franklin</div>
+            <div class="character-description">Franklin is a young and ambitious street hustler, working for a corrupt Armenian car salesman.</div>
+            <div class="chat-link" onclick="location.href='/chat/character1'">Chat with Franklin</div>
+        </div>
+
+        <div id="character2" class="character-box">
+            <img src="/static/images/michealfront.jpeg" alt="Michael" class="character-img">
+            <div class="character-name">Michael</div>
+            <div class="character-description">Michael, formerly known as Michael Townley, is a professional ex-con whose retirement is a lot less rosy than he hoped it would be.</div>
+            <div class="chat-link" onclick="location.href='/chat/character2'">Chat with Michael</div>
+        </div>
+        
+        <div id="character3" class="character-box">
+            <img src="/static/images/trevorfront.jpeg" alt="Trevor" class="character-img">
+            <div class="character-name">Trevor</div>
+            <div class="character-description">Trevor Philips is a mentally unstable redneck and bank robber. A former military pilot, he based himself in Sandy Shores, where he founded "Trevor Philips Enterprises", which mainly deals with weapons and drugs.</div>
+            <div class="chat-link" onclick="location.href='/chat/character3'">Chat with Trevor</div>
+        </div>
+
+        <div id="character4" class="character-box">
+            <img src="/static/images/Lesterfront.png" alt="Lester" class="character-img">
+            <div class="character-name">Lester</div>
+            <div class="character-description">Lester is a close associate and longtime friend of Michael and Trevor. He is a brilliant but physically disabled hacker and strategist who assists the protagonists in planning and executing their heists. Lester is highly intelligent and resourceful, often providing crucial information and support to the crew.</div>
+            <div class="chat-link" onclick="location.href='/chat/character4'">Chat with Lester</div>
+        </div>
+
+        <div id="character5" class="character-box">
+            <img src="/static/images/amandafront.jpeg" alt="Amanda" class="character-img">
+            <div class="character-name">Amanda</div>
+            <div class="character-description">Amanda is Michael De Santa's wife. She is a former stripper who met Michael before he entered the witness protection program. Their marriage is strained due to mutual infidelities and a lack of communication, but they attempt to reconcile for the sake of their family.</div>
+            <div class="chat-link" onclick="location.href='/chat/character5'">Chat with Amanda</div>
+        </div>
+
+        <div id="character6" class="character-box">
+            <img src="/static/images/Ronfront.jpeg" alt="Ron" class="character-img">
+            <div class="character-name">Ron</div>
+            <div class="character-description">Ron, also known as "Nervous Ron," is Trevor Philips' paranoid and loyal friend. He is deeply involved in Trevor Philips Enterprises and often helps Trevor with various criminal activities. Ron is known for his conspiracy theories and nervous demeanor, but he remains a dedicated and supportive ally to Trevor.</div>
+            <div class="chat-link" onclick="location.href='/chat/character6'">Chat with Ron</div>
+        </div>
+
+        <div id="character7" class="character-box">
+            <img src="/static/images/lazowfront.jpeg" alt="Lazlow" class="character-img">
+            <div class="character-name">Lazlow</div>
+            <div class="character-description">Lazlow is a well-known radio personality within the GTA series, appearing in multiple games. In GTA V, Lazlow is portrayed as a washed-up and desperate television host trying to revitalize his career. He hosts the in-game reality TV show "Fame or Shame," where he often faces ridicule and humiliation. Lazlow's character is a satirical take on media personalities and the entertainment industry.</div>
+            <div class="chat-link" onclick="location.href='/chat/character7'">Chat with Lazlow</div>
+        </div>
+
+        <div id="character8" class="character-box">
+            <img src="/static/images/Lamarfront.png" alt="Lamar" class="character-img">
+            <div class="character-name">Lamar</div>
+            <div class="character-description">Lamar is Franklin's best friend and a fellow gang member. He is ambitious but lacks the discipline and foresight that Franklin possesses. Lamar frequently gets himself and Franklin into trouble.</div>
+            <div class="chat-link" onclick="location.href='/chat/character8'">Chat with Lamar</div>
+        </div>
+
+        <div id="character9" class="character-box">
+            <img src="/static/images/Jimmyfront.png" alt="Jimmy" class="character-img">
+            <div class="character-name">Jimmy</div>
+            <div class="character-description">Jimmy is Michael and Amanda's son. He is a lazy, overweight, and underachieving young man who spends most of his time playing video games, smoking marijuana, and causing trouble. Despite his shortcomings, Jimmy cares for his family and ultimately seeks his father's approval.</div>
+            <div class="chat-link" onclick="location.href='/chat/character9'">Chat with Jimmy</div>
+        </div>
+        
+        <div id="character10" class="character-box">
+            <img src="/static/images/tracyfront.jpeg.png" alt="Tracey" class="character-img">
+            <div class="character-name">Tracey</div>
+            <div class="character-description">Tracey is Michael and Amanda's daughter. She is an aspiring celebrity who is often depicted as shallow and self-absorbed. Tracey's dreams of fame often put her at odds with her family, especially her father, who disapproves of her lifestyle and choices.</div>
+            <div class="chat-link" onclick="location.href='/chat/character10'">Chat with Tracey</div>
+        </div>
+
+        <div id="character11" class="character-box">
+            <img src="/static/images/Packiefront.jpeg" alt="Packie" class="character-img">
+            <div class="character-name">Packie</div>
+            <div class="character-description">Packie is an Irish-American gangster from Liberty City, known for his skills in armed robbery and explosives, Packie brings valuable expertise to the heist planning and execution.</div>
+            <div class="chat-link" onclick="location.href='/chat/character11'">Chat with Packie</div>
+        </div>
+
+        <div id="character12" class="character-box">
+            <img src="/static/images/Devinfront.jpeg" alt="Devin" class="character-img">
+            <div class="character-name">Devin</div>
+            <div class="character-description">Devin is a wealthy and ruthless venture capitalist and investor. He is one of the main antagonists of the game, often using his influence and resources to manipulate others for his gain. Devin's interactions with the protagonists are primarily antagonistic, as he seeks to exploit their skills for his profit.</div>
+            <div class="chat-link" onclick="location.href='/chat/character12'">Chat with Devin</div>
+        </div>
+
+        <div id="character13" class="character-box">
+            <img src="/static/images/Stevefront.jpeg" alt="Steve" class="character-img">
+            <div class="character-name">Steve</div>
+            <div class="character-description">Steve is a corrupt and manipulative FIB (Federal Investigation Bureau) agent. He uses his position to further his agenda and maintain control over the protagonists, often forcing them into dangerous situations for his benefit.</div>
+            <div class="chat-link" onclick="location.href='/chat/character13'">Chat with Steve</div>
+        </div>
+    </div>
+
+    <script>
+        // Function to activate a specific character card by ID
+        function activateCharacterBox(characterId) {
+            const characterBox = document.getElementById(characterId);
+            if (characterBox) {
+                characterBox.classList.add('active');
+            }
+        }
+
+        // Activate all character cards when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            activateCharacterBox('character1');
+            activateCharacterBox('character2');
+            activateCharacterBox('character3');
+            activateCharacterBox('character4');
+            activateCharacterBox('character5');
+            activateCharacterBox('character6');
+            activateCharacterBox('character7');
+            activateCharacterBox('character8');
+            activateCharacterBox('character9');
+            activateCharacterBox('character10');
+            activateCharacterBox('character11');
+            activateCharacterBox('character12');
+            activateCharacterBox('character13');
+        });
+    </script>
+</body>
+</html>

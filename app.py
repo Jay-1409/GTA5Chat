@@ -209,6 +209,10 @@ def chat_response():
 #     global last_index_page
 #     return redirect(url_for(last_index_page))
 
+@app.route('/Character_cards')
+def Character_cards():
+    return render_template('character_cards.html')
+
 @app.route('/update_last_index/<page>')
 def update_last_index(page):
     global last_index_page

@@ -624,7 +624,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dropdown Menu</title>
-    <!-- <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file --> -->
+    <!-- <link rel="stylesheet" href="styles.css">-->
     <style>
         /* Include CSS styles from previous response here or link to a separate CSS file */
     </style>
@@ -646,7 +646,7 @@
         <h1>Welcome to Los Santos</h1>
         <div class="header-buttons">
             <div class="button-container toggle-switch">
-                <a href="/video1">Video Map</a>
+                <a href="/Character_cards">Character Cards</a>
             </div>
             <div class="button-container night-button">
                 <div class="dropdown">
@@ -663,7 +663,32 @@
             </div>
         </div>
     </div>
+    <div class="network-warning">
+        <p>In case of poor network, the videos might not play. Please tap to skip the wait.</p>
+    </div>
+    <style>
+        .network-warning {
+            font-family: monospace;
+            position: fixed; /* Change to fixed to stay at the bottom of the viewport */
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            background-color:turquoise;
+            color: #333; /* Dark text color for contrast */
+            padding: 0.1% 0.2%;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            text-align: center;
+            z-index: 1000; /* Ensure it's above other content */
+        }
 
+        .network-warning p {
+            margin: 0 0 10px; /* Margin below the text */
+            font-size: 16px; /* Text size */
+        }
+
+    </style>
     <script>
         function toggleDropdown() {
             var dropdownContent = document.querySelector('.dropdown-content');
