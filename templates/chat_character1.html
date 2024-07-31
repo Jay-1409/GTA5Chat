@@ -314,6 +314,59 @@
         <input type="text" id="userInput" placeholder="Type a message..." onkeypress="checkEnter(event)">
         <!-- <button onclick="sendMessage()">Send</button> -->
     </div>
+    
+<!-- Added lines start here -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p>Do you want to save changes before leaving?</p>
+        <button id="saveButton">Save Changes</button>
+        <button id="cancelButton">Cancel</button>
+    </div>
+</div>
+
+<script>
+    var modal = document.getElementById("myModal");
+    var saveButton = document.getElementById("saveButton");
+    var cancelButton = document.getElementById("cancelButton");
+
+    window.onbeforeunload = function (e) {
+        e.preventDefault();
+        modal.style.display = "block";
+        return "You have unsaved changes. Do you want to leave?";
+    };
+
+    saveButton.onclick = function () {
+        var character = "{{ character }}"; // Replace with dynamic data
+
+        var dataToSave = {
+            character: character
+        };
+
+        fetch('/save_changes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataToSave)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert(data.message);
+            modal.style.display = "none";
+            window.onbeforeunload = null;
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    };
+
+    cancelButton.onclick = function () {
+        modal.style.display = "none";
+    };
+</script>
+<!-- Added lines end here -->
 
 <div class="music-player">
     <audio id="audioPlayer" controls loop>
