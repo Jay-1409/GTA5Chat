@@ -220,5 +220,9 @@ def update_last_index(page):
         last_index_page = page
     return '', 204  # No content response
 
+@app.route('/aboutus')
+def about_us():
+    return render_template('aboutus.html')
+
 # if __name__ == '__main__':
 #     app.run(debug=True)
