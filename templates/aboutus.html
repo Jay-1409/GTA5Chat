@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'CustomFont2';
+            src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+        }
+        @font-face {
+            font-family: 'CustomFont2';
+            src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: 'CustomFont2';
+            src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+            font-style: italic;
+        }
+
+        body {
+            font-family: 'CustomFont', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="%232c2c2c" /%3E%3Crect x="50" width="50" height="50" fill="%231e1e1e" /%3E%3Crect y="50" width="50" height="50" fill="%231e1e1e" /%3E%3C/svg%3E');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+#header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px; /* Reduced padding for a shorter height */
+    width: 100%;
+    height: 65px; /* Set a fixed height for the header */
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideDown 0.5s ease-in-out;
+    position: relative;
+    top: 0;
+    z-index: 1000;
+}
+
+#header img {
+    width: 50px; /* Reduced size to match the shorter header */
+    height: auto;
+    margin-right: 15px;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+#header .heading {
+    font-family: 'CustomFont2', Arial, sans-serif;
+    font-size: 10px; /* Reduced font size for a shorter header */
+    color: #fff;
+    margin: 0;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 15px; /* Adjust gap to fit the shorter header */
+}
+
+        #header img {
+            width: 60px;
+            height: auto;
+            margin-right: 20px;
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+
+        #header img:hover {
+            filter: drop-shadow(0 0 15px white);
+            transform: scale(1.1);
+        }
+
+        #header .heading {
+            font-family: 'CustomFont2', Arial, sans-serif;
+            font-size: 30px;
+            color: #fff;
+            margin: 0;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .button-container {
+            position: relative;
+        }
+
+        .button-container a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #4CAF50;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button-container a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .button-container a:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .button-container a:hover {
+            background-color: #388E3C;
+            transform: translateY(-2px);
+        }
+
+        .toggle-switch a {
+            background-color: #4CAF50;
+        }
+
+        .night-button a {
+            background-color: #333;
+        }
+
+        .logout-button a {
+            background-color: #F44336;
+        }
+
+        .toggle-switch a:hover,
+        .night-button a:hover,
+        .logout-button a:hover {
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .about-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px 0;
+        }
+
+        .person-block {
+            width: 300px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            text-align: center;
+            position: relative;
+        }
+
+        .person-block:hover {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .person-block img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .person-block:hover img {
+            transform: scale(1.1);
+        }
+
+        .person-info {
+            padding: 15px;
+            color: #333;
+        }
+
+        .person-info h1 {
+            font-size: 22px;
+            margin: 10px 0;
+        }
+
+        .person-info h2 {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .person-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .person-info li {
+            margin: 5px 0;
+        }
+
+         .person-info a img {
+            object-fit: cover; /* Ensures the image fills the container */
+
+            height: 70px; /* Adjust size as needed */
+            width: 70px;  /* Adjust size as needed */
+            border-radius: 50%; /* Makes the image round */
+            margin-top: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .person-info a:hover img {
+            transform: scale(1.2);
+        }
+
+
+        .person-description {
+            margin-top: 10px;
+            padding: 0 10px;
+            font-style: italic;
+            color: #777;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 15px;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <a href="{{ url_for('logo_click') }}">
+            <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
+        </a>
+        <div class="heading">
+            <h1>Welcome to Los Santos</h1>
+        </div>
+        <div class="header-buttons">
+            <div class="button-container toggle-switch">
+                <a href="{{ url_for('logo_click') }}">Map</a>
+            </div>
+            <div class="button-container night-button">
+                <!-- Add content if needed -->
+            </div>
+            <div class="button-container logout-button">
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container about-section">
+        <div class="person-block">
+            <img src="https://raw.githubusercontent.com/Jay-1409/CSE100-Project/main/Project/static/styles/images/arth.png" alt="Arth's Photo">
+            <div class="person-description">
+                Passionate about coding and exploring new technologies.
+            </div>
+            <div class="person-info">
+                <h1>Arth Patel</h1>
+                <h2>Student at Ahmedabad University</h2>
+                <ul>
+                    <li>Phone: +91 9898555035</li>
+                    <li>Email: arth@outlook.in</li>
+                    <li><a href="https://www.linkedin.com/in/arth-patel-a06377290/"><img src="https://raw.githubusercontent.com/Jay-1409/CSE100-Project/main/Project/static/styles/images/linkedin.jpg" alt="LinkedIn"></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="person-block">
+            <img src="https://raw.githubusercontent.com/Jay-1409/CSE100-Project/main/Project/static/styles/images/jay1.jpeg" alt="Jay's Photo">
+            <div class="person-description">
+                Enthusiastic learner and problem solver.
+            </div>
+            <div class="person-info">
+                <h1>Jay Shah</h1>
+                <h2>Student at Ahmedabad University</h2>
+                <ul>
+                    <li>Phone: +91 9823557662</li>
+                    <li>Email: jay@outlook.in</li>
+                    <li><a href="https://www.linkedin.com/in/jay-shah-8970b5284/"><img src="https://raw.githubusercontent.com/Jay-1409/CSE100-Project/main/Project/static/styles/images/linkedin.jpg" alt="LinkedIn"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
