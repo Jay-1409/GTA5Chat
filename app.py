@@ -224,5 +224,5 @@ def update_last_index(page):
 def about_us():
     return render_template('aboutus.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
