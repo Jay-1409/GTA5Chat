@@ -9,7 +9,10 @@ import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import os
 from urllib.parse import quote
+import pickle
 
+#global vars
+eemail=''
 
 
 #render
@@ -59,6 +62,23 @@ generation_config = {
     "max_output_tokens": 8192,
     "response_mime_type": "text/plain",
 }
+
+# File settings
+def create_files(email):
+    for character in characters:
+        with open(f"{email}_{characters[character]}.pkl","wb") as file:
+            pickle.dump([],file)
+            
+def append_data(character):
+    email = eemail
+    data = chat_session.history
+    with open(f"{email}_{character}.pkl","wb") as file:
+            pickle.dump(data,file)
+    
+def read_data(character):
+    email=eemail
+    with open(f"{email}_{character}.pkl","rb") as file:
+        return pickle.load(file)
 
 # User model
 class User(db.Model, UserMixin):
@@ -155,6 +175,7 @@ def register():
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        create_files(user.email)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -169,6 +190,8 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
+            global eemail
+            eemail = user.email
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('index'))
@@ -223,6 +246,18 @@ def update_last_index(page):
 @app.route('/aboutus')
 def about_us():
     return render_template('aboutus.html')
+
+@app.route('/save_changes', methods=['POST'])
+def save_changes():
+    # Retrieve data from the request
+    data = request.json
+    character = data.get('character')
+    # Perform your save logic here
+    append_data(character)
+    # For demonstration, let's just print the data
+    print(f"Data received: {data}")
+    # Respond to the client
+    return jsonify({"message": "Changes saved successfully!"})
 
 # if __name__ == '__main__':
 #     app.run(debug=True)
