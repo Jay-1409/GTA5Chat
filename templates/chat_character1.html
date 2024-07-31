@@ -134,9 +134,9 @@
         .table {
             position: fixed;
             left: 0;
-            top: 85px; /* Adjust to avoid overlap with header */
-            width: 500px;
-            height: 100px;
+            top: 10%; /* Adjust to avoid overlap with header */
+            width: 30%;
+            height: 10%;
             background-color: #d4e5ff;
             display: flex;
             justify-content: center;
@@ -291,7 +291,7 @@
         <h1>Welcome to Los Santos</h1>
         <div class="header-buttons">
             <div class="toggle-switch">
-                <a href="/video1">Video Map</a>
+                <a href="https://docs.google.com/forms/d/1xtzP8EH4QLb2DkwTT5VzwLOE6tdybWoM7Gcou8W5XSc/edit">Feedback</a>
             </div>
             <div class="logout-button">
                 <a href="/logout">Logout</a>
@@ -315,6 +315,90 @@
         <!-- <button onclick="sendMessage()">Send</button> -->
     </div>
 
+<div class="music-player">
+    <audio id="audioPlayer" controls loop>
+        <source src="/static/music/music1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button id="musicToggleButton" onclick="toggleMusic()">Listen to some music while chatting?</button> 
+</div>
+
+<script>
+    // Function to toggle music playback and button text
+    function toggleMusic() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        var toggleButton = document.getElementById('musicToggleButton');
+        
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            toggleButton.textContent = "Listen to some music while chatting ?";
+        } else {
+            audioPlayer.pause();
+            toggleButton.textContent = "Playing GTA-VI Theme music while chatting ...";
+        }
+    }
+
+    // Function to update button text based on the audio player's state
+    function updateButtonText() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        var toggleButton = document.getElementById('musicToggleButton');
+        
+        if (audioPlayer.paused) {
+            toggleButton.textContent = "Listen to some music while chatting ?";
+        } else {
+            toggleButton.textContent = "Playing GTA-VI Theme music while chatting ...";
+        }
+    }
+
+    // Get the audio element
+    var audioPlayer = document.getElementById('audioPlayer');
+
+    // Add event listeners for play and pause events
+    audioPlayer.addEventListener('play', updateButtonText);
+    audioPlayer.addEventListener('pause', updateButtonText);
+</script>
+<style>
+    .music-player {
+        font-family:'CustomFont';
+    margin-top: 15%;
+    bottom: 2%;
+    left: 2%;
+    background-color: transparent;
+    color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);*/
+    z-index: 1000;
+}
+
+.music-player audio {
+    width: 80vw; /* Use viewport width for responsiveness */
+    max-width:30%;
+    height: 20px;
+    display: block;
+    margin-bottom: 5px;
+    background-color: transparent;
+}
+
+.music-player button {
+        font-family:'CustomFont2';
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 120%;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.music-player button:hover {
+    background-color: transparent;
+}
+</style>
     <script>
         function checkEnter(event) {
             if (event.key === 'Enter') {
@@ -352,6 +436,21 @@
             })
             .catch(error => console.error('Error sending message:', error));
         }
+    //     function toggleMusic() {
+    //         var audio = document.querySelector('.music-player audio');
+    //         var button = document.querySelector('.music-player button');
+
+    //         if (audio.paused) {
+    //             audio.play();
+    //             button.textContent = 'Listening to some music ...';
+    //         } else {
+    //             audio.pause();
+    //             button.textContent = 'Listen to some music while chatting ?';
+    //         }
+    //     }
+    // var audioPlayer = document.getElementById('audioPlayer');
+    // audioPlayer.addEventListener('play', toggleMusic);
+    // audioPlayer.addEventListener('pause', toggleMusic);
     </script>
 </body>
 </html>
