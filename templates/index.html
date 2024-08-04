@@ -715,10 +715,15 @@ span:nth-child(9){
                     </div>
             </div>
             </div>
-
-            <div class="button-container logout-button">
-                <a href="/logout">Logout</a>
-            </div>
+    {% if 'logged_in' in session and session['logged_in'] %}
+        <div class="button-container logout-button">
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    {% else %}
+        <div class="button-container login-button">
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    {% endif %}
         </div>
     </div>
     <div class="network-warning">

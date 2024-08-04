@@ -194,6 +194,7 @@ def login():
             eemail = user.email
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
+            session['logged_in'] = True
             return redirect(next_page) if next_page else redirect(url_for('index'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
@@ -202,6 +203,8 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
+    session.pop('logged_in', None)
+
     return redirect(url_for('index'))
 
 @app.route('/chat/<character>')
@@ -247,17 +250,17 @@ def update_last_index(page):
 def about_us():
     return render_template('aboutus.html')
 
-@app.route('/save_changes', methods=['POST'])
-def save_changes():
-    # Retrieve data from the request
-    data = request.json
-    character = data.get('character')
-    # Perform your save logic here
-    append_data(character)
-    # For demonstration, let's just print the data
-    print(f"Data received: {data}")
-    # Respond to the client
-    return jsonify({"message": "Changes saved successfully!"})
+# @app.route('/save_changes', methods=['POST'])
+# def save_changes():
+#     # Retrieve data from the request
+#     data = request.json
+#     character = data.get('character')
+#     # Perform your save logic here
+#     append_data(character)
+#     # For demonstration, let's just print the data
+#     print(f"Data received: {data}")
+#     # Respond to the client
+#     return jsonify({"message": "Changes saved successfully!"})
 
 if __name__ == '__main__':
     app.run(debug=True)
