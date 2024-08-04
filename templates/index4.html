@@ -1151,17 +1151,72 @@
 
     <div id="map">
         <!-- Example logos (replace with actual positions) -->
-        <div class="logo" data-name="Lamar" style="top: 510px; left: 675px; background-image: url('/static/images/lamarlogo.png');" onclick="showCharacterBox('character8')"></div>
-        <div class="logo_t2" data-name="Jummy" style="top: 300px; left: 400px; background-image: url('/static/images/jummylogo.jpeg.png');" onclick="showCharacterBox('character9')"></div>
-        <div class="logo" data-name="Tracy" style="top: 350px; left: 50px; background-image: url('/static/images/tracylogo.png');" onclick="showCharacterBox('character10')"></div>
-        <div class="logo_t2" data-name="Packie" style="top: 450px; left: 950px; background-image: url('/static/images/packielogo.jpeg');" onclick="showCharacterBox('character11')"></div>
-        <div class="logo" data-name="Devin" style="top: 200px; left: 600px; background-image: url('/static/images/devinlogo.jpeg');" onclick="showCharacterBox('character12')"></div>
-        <div class="logo" data-name="Steve" style="top: 300px; left: 1200px; background-image: url('/static/images/stevelogo.png');" onclick="showCharacterBox('character13')"></div>
+<div class="logo" data-name="Lamar" style="top: 40%; left: 15%; background-image: url('/static/images/lamarlogo.png');" onclick="showCharacterBox('character8')"></div>
+<div class="logo_t2" data-name="Jummy" style="top: 60%; left: 75%; background-image: url('/static/images/jummylogo.jpeg.png');" onclick="showCharacterBox('character9')"></div>
+<div class="logo" data-name="Tracy" style="top: 20%; left: 50%; background-image: url('/static/images/tracylogo.png');" onclick="showCharacterBox('character10')"></div>
+<div class="logo_t2" data-name="Packie" style="top: 55%; left: 10%; background-image: url('/static/images/packielogo.jpeg');" onclick="showCharacterBox('character11')"></div>
+<!-- <div class="logo" data-name="Devin" style="top: 30%; left: 85%; background-image: url('/static/images/devinlogo.jpeg');" onclick="showCharacterBox('character12')"></div>
+<div class="logo" data-name="Steve" style="top: 45%; left: 35%; background-image: url('/static/images/stevelogo.png');" onclick="showCharacterBox('character13')"></div>
+<div class="logo" data-name="Franklin" style="top: 70%; left: 60%; background-image: url('/static/images/franklinlogo.jpeg');" onclick="showCharacterBox('character1')"></div>
+<div class="logo" data-name="Michael" style="top: 25%; left: 5%; background-image: url('/static/images/micheallogo.jpeg');" onclick="showCharacterBox('character2')"></div>
+<div class="logo" data-name="Trevor" style="top: 10%; left: 30%; background-image: url('/static/images/trevorlogo.jpeg');" onclick="showCharacterBox('character3')"></div> -->
+<div class="logo" data-name="Lester" style="top: 50%; left: 70%; background-image: url('/static/images/lesterlogo.jpeg');" onclick="showCharacterBox('character4')"></div>
+<div class="logo" data-name="Amanda" style="top: 35%; left: 45%; background-image: url('/static/images/amandalogo.jpeg');" onclick="showCharacterBox('character5')"></div>
+<div class="logo" data-name="Ron" style="top: 15%; left: 80%; background-image: url('/static/images/ronlogo.jpeg.png');" onclick="showCharacterBox('character6')"></div>
+<div class="logo" data-name="Lazlow" style="top: 65%; left: 25%; background-image: url('/static/images/lazlowlogo.png');" onclick="showCharacterBox('character7')"></div>
         <!-- Add more logos as needed -->
 
         <!-- Character boxes -->
+<div id="character1" class="character-box">
+            <img src="/static/images/franklinfront.jpeg" alt="Franklin" class="character-img">
+            <div class="character-name">Franklin</div>
+            <div class="character-description">Franklin is a young and ambitious street hustler, working for a corrupt Armenian car salesman.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character1')">Chat with Franklin</div>
+        </div>
+
+        <div id="character2" class="character-box">
+            <img src="/static/images/michealfront.jpeg" alt="Michael" class="character-img">
+            <div class="character-name">Michael</div>
+            <div class="character-description">Michael, formerly known as Michael Townley, is a professional ex-con whose retirement is a lot less rosy than he hoped it would be.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character2')">Chat with Michael</div>
+        </div>
+        
+        <div id="character3" class="character-box">
+            <img src="/static/images/trevorfront.jpeg" alt="Trevor" class="character-img">
+            <div class="character-name">Trevor</div>
+            <div class="character-description">Trevor Philips is a mentally unstable redneck and bank robber. A former military pilot, he based himself in Sandy Shores, where he founded "Trevor Philips Enterprises", which mainly deals with weapons and drugs.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character3')">Chat with Trevor</div>
+        </div>
+
+        <div id="character4" class="character-box">
+            <img src="/static/images/lesterfront.png" alt="Trevor" class="character-img">
+            <div class="character-name">Lester</div>
+            <div class="character-description">Lester is a close associate and longtime friend of Michael and Trevor. He is a brilliant but physically disabled hacker and strategist who assists the protagonists in planning and executing their heists. Lester is highly intelligent and resourceful, often providing crucial information and support to the crew.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character4')">Chat with Lester</div>
+        </div>
+
+        <div id="character5" class="character-box">
+            <img src="/static/images/amandafront.jpeg" alt="Trevor" class="character-img">
+            <div class="character-name">Amanda</div>
+            <div class="character-description"> Amanda is Michael De Santa's wife. She is a former stripper who met Michael before he entered the witness protection program. Their marriage is strained due to mutual infidelities and a lack of communication, but they attempt to reconcile for the sake of their family.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character5')">Chat with Amanda</div>
+        </div>
+
+        <div id="character6" class="character-box">
+            <img src="/static/images/ronfront.jpeg" alt="Trevor" class="character-img">
+            <div class="character-name">Ron</div>
+            <div class="character-description">Ron, also known as "Nervous Ron," is Trevor Philips' paranoid and loyal friend. He is deeply involved in Trevor Philips Enterprises and often helps Trevor with various criminal activities. Ron is known for his conspiracy theories and nervous demeanor, but he remains a dedicated and supportive ally to Trevor.</div>
+            <div class="chat-link" onclick="playVideo('michael-video', '/chat/character6')">Chat with Ron</div>
+        </div>
+
+        <div id="character7" class="character-box">
+            <img src="/static/images/lazowfront.jpeg" alt="Trevor" class="character-img">
+            <div class="character-name">Lazlow</div>
+            <div class="character-description">Lazlow is a well-known radio personality within the GTA series, appearing in multiple games. In GTA V, Lazlow is portrayed as a washed-up and desperate television host trying to revitalize his career. He hosts the in-game reality TV show "Fame or Shame," where he often faces ridicule and humiliation. Lazlow's character is a satirical take on media personalities and the entertainment industry.</div>
+            <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character7')">Chat with Lazlow</div>
+        </div>
         <div id="character8" class="character-box">
-            <img src="/static/images/lamarfront.png" alt="Lamar" class="character-img">
+            <img src="https://raw.githubusercontent.com/Jay-1409/lemon/main/static/images/Lamarfront.png" alt="Lamar" class="character-img">
             <div class="character-name">Lamar</div>
             <div class="character-description">Lamar is Franklin's best friend and a fellow gang member. He is ambitious but lacks the discipline and foresight that Franklin possesses. Lamar frequently gets himself and Franklin into trouble.</div>
             <div class="chat-link" onclick="playVideo('franklin-video', '/chat/character8')">Chat with Lamar</div>
@@ -1182,7 +1237,7 @@
         </div>
 
         <div id="character11" class="character-box">
-            <img src="/static/images/packiefront.jpeg" alt="Packie" class="character-img">
+            <img src="/static/images/Packiefront.jpeg" alt="Packie" class="character-img">
             <div class="character-name">Packie</div>
             <div class="character-description">Packie is an Irish-American gangster from Liberty City, Known for his skills in armed robbery and explosives, Packie brings valuable expertise to the heist planning and execution.</div>
             <div class="chat-link" onclick="playVideo('michael-video', '/chat/character11')">Chat with Packie</div>
@@ -1196,12 +1251,11 @@
         </div>
 
         <div id="character13" class="character-box">
-            <img src="/static/images/stevefront.jpeg" alt="Steve" class="character-img">
+            <img src="/static/images/Stevefront.jpeg" alt="Steve" class="character-img">
             <div class="character-name">Steve</div>
             <div class="character-description">Steve is a corrupt and manipulative FIB (Federal Investigation Bureau) agent. He uses his position to further his agenda and maintain control over the protagonists, often forcing them into dangerous situations for his benefit.</div>
             <div class="chat-link" onclick="playVideo('michael-video', '/chat/character13')">Chat with Steve</div>
         </div>
-
         <!-- Hidden video elements -->
  <!-- Hidden video elements -->
         <div id="franklin-video" class="video-overlay hidden">
