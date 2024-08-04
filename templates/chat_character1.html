@@ -281,6 +281,7 @@
                 font-size: 30px;
             }
         }
+
     </style>
 </head>
 <body>
@@ -335,36 +336,36 @@
         return "You have unsaved changes. Do you want to leave?";
     };
 
-    saveButton.onclick = function () {
-        var character = "{{ character }}"; // Replace with dynamic data
+    // saveButton.onclick = function () {
+    //     var character = "{{ character }}"; // Replace with dynamic data
 
-        var dataToSave = {
-            character: character
-        };
+    //     var dataToSave = {
+    //         character: character
+    //     };
 
-        fetch('/save_changes', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dataToSave)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert(data.message);
-            modal.style.display = "none";
-            window.onbeforeunload = null;
-            window.location.reload();
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    };
+    //     fetch('/save_changes', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(dataToSave)
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('Success:', data);
+    //         alert(data.message);
+    //         modal.style.display = "none";
+    //         window.onbeforeunload = null;
+    //         window.location.reload();
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error:', error);
+    //     });
+    // };
 
-    cancelButton.onclick = function () {
-        modal.style.display = "none";
-    };
+    // cancelButton.onclick = function () {
+    //     modal.style.display = "none";
+    // };
 </script>
 <!-- Added lines end here -->
 
