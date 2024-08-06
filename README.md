@@ -1,5 +1,5 @@
 
-# Project Title
+# GTA5 Chat
 
 This project is for GTA-5 Fans, it allows them to chat with their favourite characters, it includes more than 10 different characters
 
