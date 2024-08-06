@@ -48,6 +48,12 @@ Gunicorn,
 Werkzeug>=2.2.2,
 email_validator.
 
+##Arrangement 
+![App Screenshot](https://raw.githubusercontent.com/Jay-1409/lemon/main/static/readmess/7.jpg)
+Instance : This folder contains the databse files
+Static : This folder contains the images, videos and music used in this website
+Tempelates : This folder contains the templeates, pages for the website
+
 
 
 
