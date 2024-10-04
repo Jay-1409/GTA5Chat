@@ -35,7 +35,7 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
 # Configure the Gemini API
-genai.configure(process.env.api_key)  # Replace with your actual API key
+genai.configure('api_key')  # Replace with your actual API key
 
 # Define characters
 characters = {
