@@ -164,8 +164,7 @@ def character_page():
 
 @app.route('/logo_click')
 def logo_click():
-    last_index_page = session.get('last_index_page', 'index')
-    return redirect(url_for(last_index_page))
+    return redirect(url_for(session.get('last_index_page', 'index')))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -241,9 +240,8 @@ def Character_cards():
 
 @app.route('/update_last_index/<page>')
 def update_last_index(page):
-    global last_index_page
     if page in ["index", "index2"]:
-        last_index_page = page
+        session['last_index_page'] = page
     return '', 204  # No content response
 
 @app.route('/aboutus')
