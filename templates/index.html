@@ -35,8 +35,8 @@
     src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
     font-style: italic;
 }
-   body {
-    font-family:'CustomFont2';
+body {
+    font-family: 'CustomFont2';
     background-image: url('/static/images/back1.jpg');
     background-size: cover;
     background-attachment: fixed;
@@ -47,12 +47,13 @@
     position: relative;
     overflow-x: hidden; /* Prevent horizontal scroll bar */
     transition: background-image 0.5s ease-in-out;
+    min-height: 100vh; /* Ensure body is at least the height of the viewport */
 }
 /* Modern CSS for Header */
 #header {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 10px 20px;
-    position: sticky;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -61,6 +62,7 @@
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     animation: slideDown 0.5s ease-in-out;
+    top: 0;
 }
 
 #header img {
@@ -530,14 +532,14 @@
     box-sizing: border-box;
 }
 body{
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 section{
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 0;
 /*     https://lh3.googleusercontent.com/ka_5IYJDRkXZnbptxq64LPuggGL5FM8gnpJlsuSiOQh4b39kMkiRbVfX8iK8bjMg5SLkdfoix09P60wyFjN2=w681-h614 */
 /*    background: url("https://i.postimg.cc/c1Q3njM0/bg2.jpg");*/
 /*   background-color:black; */
