@@ -1,54 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with {{ character }}</title>
-
-    <!-- Use Google Fonts for better readability -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&family=VT323&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/chat.css">
     <style>
+    @font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/static/fonts/pricedown/PricedownBlack-MwRY.ttf') format('truetype');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+}
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('/static/fonts/respondent/RespondentPersonalUseOnlyBlackPersonalUseOnly-RpBDM.otf') format('truetype');
+    font-style: italic;
+}
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'CustomFont2';
-            font-size: 16px;
+            font-family:'CustomFont2';
+            font-size:130%;
             background-image: url('/static/images/{{ character }}nback.jpg');
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 100vh;
-            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            color: white;
         }
+
+        #header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: top 0.5s;
+        }
+
+        #header img {
+            width: 60px;
+            height: auto;
+            margin-right: 10px;
+            vertical-align: middle;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #header img:hover {
+            filter: drop-shadow(0 0 15px white);
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 24px;
+            margin-right: 50px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .header-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-switch {
+            margin-left: 10px;
+            background-color: rgba(72, 61, 139, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .toggle-switch a {
+            color: #FFD700;
+            text-decoration: underline;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .toggle-switch:hover {
+            background-color: rgba(75, 0, 130, 0.8);
+        }
+
+        .toggle-switch a:hover {
+            color: #FF4500;
+        }
+
+        .logout-button {
+            margin-left: 10px;
+            margin-right: 30px;
+            background-color: rgba(139, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .logout-button a {
+            color: #FFD700;
+            text-decoration: underline;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .logout-button:hover {
+            background-color: rgba(178, 34, 34, 0.8);
+        }
+
+        .logout-button a:hover {
+            color: #FF4500;
+        }
+
+        .table {
+            position: relative;
+            left: 0;
+            top: 10%; /* Adjust to avoid overlap with header */
+            width: 30%;
+            height: 10%;
+            background-color: #d4e5ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.30);
+            z-index: 999;
+            margin-left:70%;
+            margin-top:10%;
+        }
+
+        .monitor-wrapper {
+            background: #050321;
+            width: 90%;
+            height: 5   0%;
+            box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.30);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .monitor {
+            width: 90%;
+            height: 40%;
+            background-color: #344151;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: inset 0px 5px 10px 2px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .monitor p {
+            font-family:'CustomFont','VT323', monospace;
+            font-size: 50px;
+            position: relative;
+            display: inline-block;
+            animation: move 20s infinite linear;
+            color: #EBB55F;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        #chatbox {
+            font-family: monospace;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        #messages {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        #messages div {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #messages div strong {
+            color: yellow;
+        }
+
+        #userInput {
+            width: calc(100% - 80px);
+            padding: 10px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            #header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #header h1 {
+                margin-right: 0;
+                font-size: 20px;
+            }
+
+            .header-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .toggle-switch, .logout-button {
+                margin: 5px 0;
+            }
+
+            #userInput {
+                width: calc(100% - 70px);
+            }
+
+            .table {
+                width: 100%;
+                height: auto;
+                top: 60px; /* Adjust for mobile */
+            }
+
+            .monitor-wrapper {
+                width: 100%;
+                height: auto;
+            }
+
+            .monitor {
+                width: 100%;
+                height: auto;
+            }
+
+            .monitor p {
+                font-size: 30px;
+            }
+        }
+
     </style>
 </head>
-
 <body>
     <div id="header">
-        <div style="display: contents;">
-            <a href="{{ url_for('logo_click') }}">
-                <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
-            </a>
-            <h1>Welcome to Los Santos</h1>
-        </div>
-
+        <a href="{{ url_for('logo_click') }}">
+            <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
+        </a>
+        <h1>Welcome to Los Santos</h1>
         <div class="header-buttons">
-            <a href="https://docs.google.com/forms/d/1xtzP8EH4QLb2DkwTT5VzwLOE6tdybWoM7Gcou8W5XSc/edit">Feedback</a>
+            <div class="toggle-switch">
+                <a href="https://docs.google.com/forms/d/1xtzP8EH4QLb2DkwTT5VzwLOE6tdybWoM7Gcou8W5XSc/edit">Feedback</a>
+            </div>
             <div class="logout-button">
                 <a href="/logout">Logout</a>
             </div>
         </div>
     </div>
 
-    <div class="character-display">
-        <img src="/static/images/{{ character|lower }}logo.png" alt="{{ character }}" class="character-image">
-        <div class="character-name">{{ character }}</div>
-    </div>
     <div class="table">
         <div class="monitor-wrapper">
             <div class="monitor">
@@ -56,22 +309,153 @@
             </div>
         </div>
     </div>
-    <div>
-        <div id="chatbox">
-            <div id="messages">
-            </div>
-            <input type="text" id="userInput" placeholder="Type a message..." onkeypress="checkEnter(event)">
+
+    <div id="chatbox">
+        <div id="messages">
+            <!-- Messages will be dynamically populated here -->
         </div>
+        <input type="text" id="userInput" placeholder="Type a message..." onkeypress="checkEnter(event)">
+        <!-- <button onclick="sendMessage()">Send</button> -->
     </div>
-
-    <div class="music-player">
-        <audio id="audioPlayer" controls loop>
-            <source src="https://github.com/Jay-1409/lemon/raw/main/static/Music/Music1.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <button id="musicToggleButton" onclick="toggleMusic()">Listen to music while chatting</button>
+    
+<!-- Added lines start here -->
+<!-- <div id="myModal" class="modal">
+    <div class="modal-content">
+        <p>Do you want to save changes before leaving?</p>
+        <button id="saveButton">Save Changes</button>
+        <button id="cancelButton">Cancel</button>
     </div>
+</div> -->
 
+<script>
+    var modal = document.getElementById("myModal");
+    var saveButton = document.getElementById("saveButton");
+    var cancelButton = document.getElementById("cancelButton");
+
+    window.onbeforeunload = function (e) {
+        e.preventDefault();
+        modal.style.display = "block";
+        return "You have unsaved changes. Do you want to leave?";
+    };
+
+    // saveButton.onclick = function () {
+    //     var character = "{{ character }}"; // Replace with dynamic data
+
+    //     var dataToSave = {
+    //         character: character
+    //     };
+
+    //     fetch('/save_changes', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(dataToSave)
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('Success:', data);
+    //         alert(data.message);
+    //         modal.style.display = "none";
+    //         window.onbeforeunload = null;
+    //         window.location.reload();
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error:', error);
+    //     });
+    // };
+
+    // cancelButton.onclick = function () {
+    //     modal.style.display = "none";
+    // };
+</script>
+<!-- Added lines end here -->
+
+<div class="music-player">
+    <audio id="audioPlayer" controls loop>
+        <source src="https://github.com/Jay-1409/lemon/raw/main/static/Music/Music1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button id="musicToggleButton" onclick="toggleMusic()">Listen to some music while chatting?</button> 
+</div>
+
+<script>
+    // Function to toggle music playback and button text
+    function toggleMusic() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        var toggleButton = document.getElementById('musicToggleButton');
+        
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            toggleButton.textContent = "Listen to some music while chatting ?";
+        } else {
+            audioPlayer.pause();
+            toggleButton.textContent = "Playing GTA-VI Theme music while chatting ...";
+        }
+    }
+
+    // Function to update button text based on the audio player's state
+    function updateButtonText() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        var toggleButton = document.getElementById('musicToggleButton');
+        
+        if (audioPlayer.paused) {
+            toggleButton.textContent = "Listen to some music while chatting ?";
+        } else {
+            toggleButton.textContent = "Playing GTA-VI Theme music while chatting ...";
+        }
+    }
+
+    // Get the audio element
+    var audioPlayer = document.getElementById('audioPlayer');
+
+    // Add event listeners for play and pause events
+    audioPlayer.addEventListener('play', updateButtonText);
+    audioPlayer.addEventListener('pause', updateButtonText);
+</script>
+<style>
+    .music-player {
+    font-family:'CustomFont';
+    margin-top: 15%;
+    bottom: 2%;
+    left: 2%;
+    background-color: transparent;
+    color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);*/
+    z-index: 1000;
+    margin-top: 21%;
+}
+
+.music-player audio {
+    width: 80vw; /* Use viewport width for responsiveness */
+    max-width:30%;
+    height: 20px;
+    display: block;
+    margin-bottom: 5px;
+    background-color: transparent;
+}
+
+.music-player button {
+        font-family:'CustomFont2';
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 120%;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.music-player button:hover {
+    background-color: transparent;
+}
+</style>
     <script>
         function checkEnter(event) {
             if (event.key === 'Enter') {
@@ -81,38 +465,49 @@
 
         function sendMessage() {
             const userInput = document.getElementById('userInput').value.trim();
-            if (!userInput) return;
+            if (userInput === '') {
+                return;
+            }
 
-            const messagesDiv = document.getElementById('messages');
-            messagesDiv.innerHTML += `<div class="message user-message"><strong>You:</strong> ${userInput}</div>`;
-            document.getElementById('userInput').value = '';
+            // Display user message
+            document.getElementById('messages').innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
+            document.getElementById('userInput').value = ''; // Clear input field
 
+            // Send message to Flask server
             fetch('/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: new URLSearchParams({ message: userInput, character: '{{ character }}' })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    messagesDiv.innerHTML += `<div class="message character-message"><strong>{{ character }}:</strong> ${data.response}</div>`;
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                body: new URLSearchParams({
+                    message: userInput,
+                    character: '{{ character }}'
                 })
-                .catch(error => console.error('Error:', error));
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display AI response
+                document.getElementById('messages').innerHTML += `<div><strong>{{ character }}:</strong> ${data.response}</div>`;
+                // Scroll to bottom of messages
+                document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+            })
+            .catch(error => console.error('Error sending message:', error));
         }
+    //     function toggleMusic() {
+    //         var audio = document.querySelector('.music-player audio');
+    //         var button = document.querySelector('.music-player button');
 
-        function toggleMusic() {
-            const audioPlayer = document.getElementById('audioPlayer');
-            if (audioPlayer.paused) {
-                audioPlayer.play();
-                document.getElementById('musicToggleButton').innerText = 'Stop the music';
-            } else {
-                audioPlayer.pause();
-                document.getElementById('musicToggleButton').innerText = 'Listen to music while chatting';
-            }
-        }
+    //         if (audio.paused) {
+    //             audio.play();
+    //             button.textContent = 'Listening to some music ...';
+    //         } else {
+    //             audio.pause();
+    //             button.textContent = 'Listen to some music while chatting ?';
+    //         }
+    //     }
+    // var audioPlayer = document.getElementById('audioPlayer');
+    // audioPlayer.addEventListener('play', toggleMusic);
+    // audioPlayer.addEventListener('pause', toggleMusic);
     </script>
 </body>
-
 </html>
