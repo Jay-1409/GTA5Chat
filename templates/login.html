@@ -4,154 +4,213 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-body {
-    font-family: Arial, sans-serif;
-    background-image: url('/static/images/loginback1.png');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
 
-.login-container {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px 40px; /* Adjusted padding for better spacing */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    width: 90%; /* Responsive width */
-    max-width: 400px; /* Max width for larger screens */
-    text-align: center;
-    color: #fff;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%;
+            padding: 0 10px;
+            background: url('/static/images/loginback1.png') no-repeat center center/cover;
+        }
 
-.login-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
-}
+        .wrapper {
+            width: 400px;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
-.login-container h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    animation: fadeInDown 0.5s ease-in-out;
-}
+        .wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+        }
 
-.login-container form div {
-    margin-bottom: 15px;
-}
+        form {
+            display: flex;
+            flex-direction: column;
+        }
 
-.login-container label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 16px;
-}
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+            animation: fadeInDown 0.5s ease-in-out;
+        }
 
-.login-container input[type="text"], 
-.login-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensure padding doesn't affect overall width */
-    font-size: 16px;
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
+        .input-field {
+            position: relative;
+            border-bottom: 2px solid #ccc;
+            margin: 15px 0;
+        }
 
-.login-container input[type="text"]:focus, 
-.login-container input[type="password"]:focus {
-    border-color: #4CAF50;
-    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-    outline: none;
-}
+        .input-field label {
+            position: absolute;
+            padding: 10px;
+            left: 0;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 16px;
+            pointer-events: none;
+            transition: 0.15s ease;
+        }
 
-.login-container .error {
-    color: red;
-    font-size: 14px;
-}
+        .input-field input {
+            width: 100%;
+            padding: 5px;
+            height: 50px;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #fff;
+        }
 
-.login-container button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
+        .input-field input:focus~label,
+        .input-field input:valid~label {
+            font-size: 0.8rem;
+            top: 10px;
+            transform: translateY(-120%);
+        }
 
-.login-container button:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-}
+        /* Password eye icon */
+        .input-field .eye-btn {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #fff;
+        }
 
-.login-container .remember {
-    display: flex;
-    align-items: center;
-}
+        .forget {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 25px 0 35px 0;
+            color: #fff;
+        }
 
-.login-container .remember label {
-    margin-left: 5px;
-    font-size: 14px;
-}
+        #remember {
+            accent-color: #fff;
+        }
 
-/* Animations */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        .forget label {
+            display: flex;
+            align-items: center;
+        }
 
-@media (max-width: 600px) {
-    .login-container {
-        padding: 20px 20px;
-    }
-}
+        .forget label p {
+            margin-left: 8px;
+        }
 
+        .wrapper a {
+            color: #efefef;
+            text-decoration: none;
+        }
+
+        .wrapper a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            background: #fff;
+            color: #000;
+            font-weight: 600;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 16px;
+            border: 2px solid transparent;
+            transition: 0.3s ease;
+        }
+
+        .button:hover {
+            color: #fff;
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 30px;
+            color: #fff;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <div class="wrapper">
         <h2>Login</h2>
         <form method="POST" action="">
             {{ form.hidden_tag() }}
-            <div>
-                <label for="email">{{ form.email.label }}</label>
+            <div class="input-field">
                 {{ form.email(size=32) }}
+                <label for="email">{{ form.email.label }}</label>
                 {% for error in form.email.errors %}
                     <span class="error">[{{ error }}]</span>
                 {% endfor %}
             </div>
-            <div>
+            <div class="input-field">
+                {{ form.password(id="password", size=32) }}
                 <label for="password">{{ form.password.label }}</label>
-                {{ form.password(size=32) }}
                 {% for error in form.password.errors %}
                     <span class="error">[{{ error }}]</span>
                 {% endfor %}
+                <span class="eye-btn" onclick="togglePassword()">👁️</span> <!-- Eye button -->
             </div>
-            <div class="remember">
-                {{ form.remember() }}
-                {{ form.remember.label }}
+            <div class="forget">
+                <label for="remember">
+                    {{ form.remember() }}
+                    {{ form.remember.label }}
+                </label>
             </div>
-            <div>
-                {{ form.submit() }}
-            </div>
-            <div class="register-btn">
-              <a href="/register">
-                <p>Register Insted</p>
-              </a>              
+            <!-- Correct button for submission -->
+            <button type="submit" class="button">Login</button>
+            <div class="register">
+                <p>Don't have an account? <a href="/register">Register Instead</a></p>
             </div>
         </form>
     </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+        }
+    </script>
 </body>
 </html>
