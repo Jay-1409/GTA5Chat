@@ -1,270 +1,188 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('/static/images/loginback1.png'); /* Replace with your background image path */
-            background-size: cover;
-            background-position: center;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        body {
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%;
+            padding: 0 10px;
+            background: url('/static/images/loginback1.png') no-repeat center center/cover;
         }
 
-        .form-container {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
+        .wrapper {
+            width: 400px;
+            border-radius: 8px;
+            padding: 30px;
             text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 10; /* Ensure the form is above the other elements */
-
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
-        h2 {
-            margin-bottom: 20px;
-            color: #333;
+        .wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
         }
 
         form {
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+            animation: fadeInDown 0.5s ease-in-out;
         }
 
-        input[type="submit"] {
-            width: 100%;
+        .input-field {
+            position: relative;
+            border-bottom: 2px solid #ccc;
+            margin: 15px 0;
+        }
+
+        .input-field label {
+            position: absolute;
             padding: 10px;
-            margin-top: 10px;
-            background-color: #4CAF50;
-            color: white;
+            left: 0;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 16px;
+            pointer-events: none;
+            transition: 0.15s ease;
+            width: max-content;
+        }
+
+        .input-field input {
+            width: 100%;
+            padding: 5px;
+            height: 50px;
+            background: transparent;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            outline: none;
+            font-size: 16px;
+            color: #fff;
         }
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
+        .input-field input:focus~label,
+        .input-field input:valid~label {
+            font-size: 0.8rem;
+            top: 10px;
+            transform: translateY(-120%);
         }
 
         .error-message {
             color: red;
-            font-size: 0.8em;
-            margin-top: -10px;
-            margin-bottom: 10px;
-            text-align: left;
+            font-size: 14px;
         }
-*
-{
-    margin: 0;
-    padding:0;
-    box-sizing: border-box;
-}
-body{
-    overflow: hidden;
-}
-section{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    /* https://lh3.googleusercontent.com/ka_5IYJDRkXZnbptxq64LPuggGL5FM8gnpJlsuSiOQh4b39kMkiRbVfX8iK8bjMg5SLkdfoix09P60wyFjN2=w681-h614 */
-/*    background: url("https://i.postimg.cc/c1Q3njM0/bg2.jpg");*/
-/*   background-color:black; */
-/*    background-size: cover;*/
-    animation: animateBg 50s linear infinite;
-}
 
-/*@keyframes animateBg{
-    0%,100%{
-        transform: scale(1);
-    }
-    50%{
-        transform: scale(1.2);
-    }
-}*/
+        .button {
+            background: #fff;
+            color: #000;
+            font-weight: 600;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 16px;
+            border: 2px solid transparent;
+            transition: 0.3s ease;
+            margin-top: 20px;
+        }
 
-span{
-    position: absolute;
-    top:50%;
-    left:50%;
-    width: 4px;
-    height: 4px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(255,255,255,0.1),0 0 0 8px rgba(255,255,255,0.1),0 0 20px rgba(255,255,255,0.1);
-    animation: animate 3s linear infinite;
-}
-span::before{
-    content:'';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 300px;
-    height: 1px;
-    background: linear-gradient(90deg,#fff,transparent);
-}
-@keyframes animate
-{
-    0%
-    {
-        transform: rotate(315deg) translateX(0);
-        opacity: 1;
-    }
-    70%
-    {
-        opacity: 1;
-    }
-    100%
-    {
-        transform: rotate(315deg) translateX(-1000px);
-        opacity: 0;
-    }
-}
-span:nth-child(1){
-    top: 0;
-    right: 0;
-    left: initial;
-    animation-delay: 0s;
-    animation-duration: 1s;
-}
-span:nth-child(2){
-    top: 0;
-    right: 80px;
-    left: initial;
-    animation-delay: 0.2s;
-    animation-duration: 3s;
-}
-span:nth-child(3){
-    top: 80;
-    right: 0px;
-    left: initial;
-    animation-delay: 0.4s;
-    animation-duration: 2s;
-}
-span:nth-child(4){
-    top: 0;
-    right: 180px;
-    left: initial;
-    animation-delay: 0.6s;
-    animation-duration: 1.5s;
-}
-span:nth-child(5){
-    top: 0;
-    right: 400px;
-    left: initial;
-    animation-delay: 0.8s;
-    animation-duration: 2.5s;
-}
-span:nth-child(6){
-    top: 0;
-    right: 600px;
-    left: initial;
-    animation-delay: 1s;
-    animation-duration: 3s;
-}
-span:nth-child(7){
-    top: 300px;
-    right: 0px;
-    left: initial;
-    animation-delay: 1.2s;
-    animation-duration: 1.75s;
-}
-span:nth-child(8){
-    top: 0px;
-    right: 700px;
-    left: initial;
-    animation-delay: 1.4s;
-    animation-duration: 1.25s;
-}
-span:nth-child(9){
-    top: 0px;
-    right: 1000px;
-    left: initial;
-    animation-delay: 0.75s;
-    animation-duration: 2.25s;
-}
-span:nth-child(9){
-    top: 0px;
-    right: 450px;
-    left: initial;
-    animation-delay: 2.75s;
-    animation-duration: 2.75s;
-}
+        .button:hover {
+            color: #fff;
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .login {
+            text-align: center;
+            margin-top: 30px;
+            color: #fff;
+        }
+
+        .login a {
+            color: #efefef;
+            text-decoration: none;
+        }
+
+        .login a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
-        <section>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </section>
-    <div class="form-container">
+    <div class="wrapper">
         <h2>Register</h2>
         <form method="POST" action="">
             {{ form.hidden_tag() }}
 
-            <div>
-                {{ form.username.label }}<br>
-                {{ form.username(size=32) }}<br>
+            <div class="input-field">
+                {{ form.username(size=32) }}
+                <label for="username">{{ form.username.label }}</label>
                 {% for error in form.username.errors %}
                     <span class="error-message">{{ error }}</span>
                 {% endfor %}
             </div>
 
-            <div>
-                {{ form.email.label }}<br>
-                {{ form.email(size=32) }}<br>
+            <div class="input-field">
+                {{ form.email(size=32) }}
+                <label for="email">{{ form.email.label }}</label>
                 {% for error in form.email.errors %}
                     <span class="error-message">{{ error }}</span>
                 {% endfor %}
             </div>
 
-            <div>
-                {{ form.password.label }}<br>
-                {{ form.password(size=32) }}<br>
+            <div class="input-field">
+                {{ form.password(size=32) }}
+                <label for="password">{{ form.password.label }}</label>
                 {% for error in form.password.errors %}
                     <span class="error-message">{{ error }}</span>
                 {% endfor %}
             </div>
 
-            <div>
-                {{ form.confirm_password.label }}<br>
-                {{ form.confirm_password(size=32) }}<br>
+            <div class="input-field">
+                {{ form.confirm_password(size=32) }}
+                <label for="confirm_password">{{ form.confirm_password.label }}</label>
                 {% for error in form.confirm_password.errors %}
                     <span class="error-message">{{ error }}</span>
                 {% endfor %}
             </div>
 
-            <div>
-                {{ form.submit() }}
+            <button type="submit" class="button">Register</button>
+            <div class="login">
+                <p>Already have an account? <a href="/login">Login Instead</a></p>
             </div>
         </form>
     </div>
