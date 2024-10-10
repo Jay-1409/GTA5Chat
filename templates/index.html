@@ -81,7 +81,7 @@ body {
 }
 #header h1 {
     margin: 0;
-    font-size: 60px;
+    font-size: 3vw;
     color: #fff;
     margin-right: 50px;
     animation: fadeIn 1s ease-in-out;
@@ -90,6 +90,7 @@ body {
 /* Container for button groups */
 .header-buttons {
     display: flex;
+    flex-wrap: wrap; /* Allow buttons to stack on smaller screens */
     gap: 20px;
 }
 
@@ -663,6 +664,26 @@ span:nth-child(9){
     animation-delay: 2.75s;
     animation-duration: 2.75s;
 }
+
+
+
+@media (max-width: 768px) {
+    #header h1 {
+        font-size: 40px; /* Smaller on tablets */
+    }
+    .logo, .logo_t2 {
+        width: 20vw; /* Increase size on smaller screens */
+    }
+}
+@media (max-width: 480px) {
+    #header h1 {
+        font-size: 30px; /* Smaller on phones */
+    }
+    .logo, .logo_t2 {
+        width: 30vw; /* Increase size for even smaller screens */
+    }
+}
+
 /* styles.css */
 
 
