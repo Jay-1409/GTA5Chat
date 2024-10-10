@@ -78,7 +78,7 @@
 
 #header h1 {
     margin: 0;
-    font-size: 60px;
+    font-size: 3vw;
     color: #fff;
     margin-right: 50px;
     animation: fadeIn 1s ease-in-out;
@@ -87,7 +87,9 @@
 /* Container for button groups */
 .header-buttons {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
 }
 
 /* Container for individual buttons */
@@ -233,12 +235,15 @@
 #map {
     position: relative;
     width: 100%;
-    height: 60vh; /* Use viewport height for responsiveness */
+    height: auto; /* Use viewport height for responsiveness */
 /*    background-image: url('/static/images/map_background.jpg');*/
     background-size: cover;
     margin-top: 20px;
 }
-
+.logo{
+    width: 10vw;
+    max-width: 100px;
+}
 .logo, .logo_t2 {
     position: absolute;
     width: 10vw; /* Use viewport width for responsiveness */
@@ -997,6 +1002,19 @@
 .snowflake:nth-child(6n) {
   filter: blur(1px);
 }
+
+@media (max-width: 768px) {
+    #header h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    #header h1 {
+        font-size: 30px;
+    }
+}
+
     </style>
 </head>
 <body>
