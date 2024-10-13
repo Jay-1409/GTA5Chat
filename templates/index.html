@@ -532,9 +532,7 @@ body {
     padding:0;
     box-sizing: border-box;
 }
-body{
-    /* overflow: hidden; */
-}
+
 section{
     position: relative;
     top: 0;
@@ -683,6 +681,92 @@ span:nth-child(9){
         width: 30vw; /* Increase size for even smaller screens */
     }
 }
+/* Default styles for desktop view (screens larger than 770px) */
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Make the header buttons visible for larger screens */
+.header-buttons {
+    display: flex; /* Ensure buttons are shown */
+    gap: 20px;
+}
+
+.close-btn{
+    display: none;
+}
+.hamburger-icon {
+    display: none; /* Hide hamburger icon by default for larger screens */
+}
+
+/* Media query for screens 770px and smaller */
+@media screen and (max-width: 920px) {
+    /* Hide the default header buttons on small screens */
+    .header-buttons {
+        display: none; /* Hide buttons at 770px or below */
+    }
+
+    /* Show the hamburger icon on small screens */
+    .hamburger-icon {
+        display: block; /* Show hamburger icon at 770px or below */
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+    /* Mobile menu styles */
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 250px; /* Adjust width for side menu */
+        padding: 20px;
+        transform: translateX(100%); /* Hidden off-screen initially */
+        transition: transform 0.3s ease; /* Smooth slide-in effect */
+        z-index: 999;
+    }
+
+    /* When the 'show' class is added, slide in the menu */
+    .mobile-menu.show {
+        transform: translateX(0); /* Slide menu into view */
+    }
+
+    /* Cross (close) button inside the mobile menu */
+    .close-btn {
+        display: inline-block;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+        align-self: flex-end;
+        margin-bottom: 20px;
+    }
+
+    /* Mobile menu links */
+    .button-container {
+        margin: 15px 0;
+    }
+
+    .button-container a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px;
+        display: block;
+        transition: background-color 0.3s;
+    }
+
+    .button-container a:hover {
+        background-color: #555;
+    }
+}
+
+
 
 /* styles.css */
 
@@ -717,38 +801,60 @@ span:nth-child(9){
 <body>
     <div id="header">
         <img src="/static/images/weblogo.jpeg" alt="Los Santos Legends Logo">
-        <div class = "heading">
+        
+        <!-- Hamburger Icon (visible on small screens) -->
+    
+        <!-- Header Title -->
+        <div class="heading">
             <h1>Welcome to Los Santos</h1>
         </div>
-        <div class="header-buttons">
+
+        <div class="hamburger-icon" onclick="toggleMenu()">&#9776;</div>
+
+    
+        <!-- Header buttons that will become a side menu on smaller screens -->
+        <div class="header-buttons mobile-menu" id="mobileMenu">
+            <!-- Close button for the mobile menu -->
+            <div class="close-btn" onclick="toggleMenu()">&#10005;</div>
+            
             <div class="button-container toggle-switch">
                 <a href="/aboutus">About us</a>
             </div>
             <div class="button-container toggle-switch">
                 <a href="/Character_cards">Character Cards</a>
             </div>
-
+    
             <div class="button-container night-button">
-            <div class="dropdown">
+                <div class="dropdown">
                     <button class="dropdown-button" onclick="toggleDropdown()">Cities</button>
                     <div class="dropdown-content">
                         <a href="#" onclick="playDayVideo1()">Afternoon City</a>
                         <a href="#" onclick="playDayVideo2()">Evening City</a>
                         <a href="#" onclick="playDayVideo3()">Morning City</a>
                     </div>
+                </div>
             </div>
+    
+            {% if 'logged_in' in session and session['logged_in'] %}
+            <div class="button-container logout-button">
+                <a href="{{ url_for('logout') }}">Logout</a>
             </div>
-    {% if 'logged_in' in session and session['logged_in'] %}
-        <div class="button-container logout-button">
-            <a href="{{ url_for('logout') }}">Logout</a>
-        </div>
-    {% else %}
-        <div class="button-container login-button">
-            <a href="{{ url_for('login') }}">Login</a>
-        </div>
-    {% endif %}
+            {% else %}
+            <div class="button-container login-button">
+                <a href="{{ url_for('login') }}">Login</a>
+            </div>
+            {% endif %}
         </div>
     </div>
+    
+    <!-- Place the JavaScript code here -->
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('show');
+        }
+    </script>
+    
     <div class="network-warning">
         <p>In case of poor network, the videos might not play. Please tap to skip the wait.</p>
     </div>
