@@ -227,13 +227,42 @@ def chat_response():
 
     # Send the user's message to the Gemini AI model and receive the response
     response = chat_session.send_message(message)
+    response_text = response.text.strip()  # Restore this line
     chat_session.history.append({"role": "user", "content": message})
-    chat_session.history.append({"role": "assistant", "content": response})
+    chat_session.history.append({"role": "assistant", "content": response_text})
 
     # Append data for the current character
     append_data(list(characters.keys())[0])  # Change index based on your logic
-    return jsonify({'response': response})
 
-if __name__ == "__main__":
+    # Return the AI's response as JSON
+    return jsonify({'response': response_text})  # Restore this line
+
+@app.route('/Character_cards')
+def Character_cards():
+    return render_template('character_cards.html')
+
+@app.route('/update_last_index/<page>')
+def update_last_index(page):
+    if page in ["index", "index2"]:
+        session['last_index_page'] = page
+    return '', 204  # No content response
+
+@app.route('/aboutus')
+def about_us():
+    return render_template('aboutus.html')
+
+# @app.route('/save_changes', methods=['POST'])
+# def save_changes():
+#     # Retrieve data from the request
+#     data = request.json
+#     character = data.get('character')
+#     # Perform your save logic here
+#     append_data(character)
+#     # For demonstration, let's just print the data
+#     print(f"Data received: {data}")
+#     # Respond to the client
+#     return jsonify({"message": "Changes saved successfully!"})
+
+if __name__ == '__main__':
     app.run(debug=True)
 
