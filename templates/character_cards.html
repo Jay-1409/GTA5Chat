@@ -78,9 +78,11 @@ body {
     filter: drop-shadow(0 0 15px white);
     transform: scale(1.1);
 }
+
 #header .heading {
     font-size: 50px; /* Match the body font size */
 }
+
 #header h1 {
     margin: 0;
     font-size: 60px;
@@ -141,6 +143,76 @@ body {
     color: #fff;
     border-color: #388E3C;
     transform: translateY(-2px);
+}
+
+/* Specific styling for individual buttons */
+.toggle-switch a {
+    background-color: #4CAF50;
+}
+
+.night-button a {
+    background-color: #333;
+}
+
+.logout-button a {
+    background-color: #F44336;
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+    #header {
+        flex-direction: column; /* Stack elements vertically */
+        padding: 10px;
+        text-align: center;
+    }
+
+    #header img {
+        width: 50px; /* Reduce the logo size */
+        margin-bottom: 10px;
+    }
+
+    #header h1 {
+        font-size: 40px; /* Smaller font size for heading */
+        margin-right: 0; /* No right margin on smaller screens */
+    }
+
+    .header-buttons {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px; /* Smaller gap between buttons */
+    }
+
+    .button-container a {
+        font-size: 20px; /* Reduce button font size */
+        padding: 10px 20px; /* Smaller padding for buttons */
+    }
+
+    #header .heading {
+        font-size: 40px; /* Reduce heading size */
+    }
+}
+
+/* Media Query for Extra Small Screens (e.g., Mobile Phones) */
+@media (max-width: 480px) {
+    #header {
+        padding: 5px; /* Less padding for very small screens */
+    }
+
+    #header img {
+        width: 40px; /* Further reduce logo size */
+    }
+
+    #header h1 {
+        font-size: 30px; /* Even smaller heading */
+    }
+
+    .header-buttons {
+        gap: 5px; /* Tighten gap between buttons */
+    }
+
+    .button-container a {
+        font-size: 18px; /* Reduce button font size */
+        padding: 8px 16px; /* Smaller padding for buttons */
+    }
 }
 
 /* Specific styling for individual buttons */
