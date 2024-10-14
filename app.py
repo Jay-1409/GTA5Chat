@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for, flash,session
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
@@ -10,20 +10,22 @@ from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import os
 from urllib.parse import quote
 import pickle
+from flask_limiter import Limiter
 
-#global vars
-eemail=''
+# Global vars
+eemail = ''
 
+# Initialize Flask app and rate limiter
+app = Flask(__name__)
+limiter = Limiter(app, key_func=lambda: current_user.email if current_user.is_authenticated else "anonymous")
 
-#render
-
-
+# Render
 last_index_page = "index"
 def logo_click():
     global last_index_page
     return redirect(url_for(last_index_page))
+
 # Configure the Flask application
-app = Flask(__name__)
 app.config['SECRET_KEY'] = 'the random string'    
 # app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key')  # Ensure to replace 'your_secret_key' with a real key or set it in your environment
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -35,7 +37,7 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
 # Configure the Gemini API
-genai.configure(api_key="AIzaSyAdhHba59C82frkiMmR0U1a5YzfFuYm8DM")  # Replace with your actual API key
+genai.configure(api_key="YOUR_API_KEY")  # Replace with your actual API key
 
 # Define characters
 characters = {
@@ -76,7 +78,7 @@ def append_data(character):
             pickle.dump(data,file)
     
 def read_data(character):
-    email=eemail
+    email = eemail
     with open(f"{email}_{character}.pkl","rb") as file:
         return pickle.load(file)
 
@@ -134,7 +136,7 @@ def initialize_chat_session(character_name):
         If someone asks you for your name, then reply with your appropriate name.
         If someone asks you for your age, then reply with your appropriate age.
         If someone asks you for your gender, then reply with your appropriate gender.
-        Also, do not reply to any questions that are not related to the game; instead, just say something like "You think I am an idiot asking such obvious questions."""
+        Also, do not reply to any questions that are not related to the game; instead, just say something like "You think I am an idiot asking such obvious questions."""  
     ).start_chat(history=[])
 
 # Routes
@@ -203,11 +205,11 @@ def login():
 def logout():
     logout_user()
     session.pop('logged_in', None)
-
     return redirect(url_for('index'))
 
 @app.route('/chat/<character>')
 @login_required
+@limiter.limit("5 per minute")  # Limit to 5 requests per minute per user
 def chat_character(character):
     if character in characters:
         global chat_session
@@ -218,21 +220,22 @@ def chat_character(character):
 
 @app.route('/chat', methods=['POST'])
 @login_required
+@limiter.limit("5 per minute")  # Limit to 5 requests per minute per user
 def chat_response():
     global chat_session
     message = request.form['message']
 
-    # Send the user's message to the Gemini AI model
+    # Send the user's message to the Gemini AI model and receive the response
     response = chat_session.send_message(message)
-    response_text = response.text.strip()
+    response_text = response.text.strip()  # Restore this line
+    chat_session.history.append({"role": "user", "content": message})
+    chat_session.history.append({"role": "assistant", "content": response_text})
+
+    # Append data for the current character
+    append_data(list(characters.keys())[0])  # Change index based on your logic
 
     # Return the AI's response as JSON
-    return jsonify({'response': response_text})
-
-# @app.route('/logo_click')
-# def logo_click():
-#     global last_index_page
-#     return redirect(url_for(last_index_page))
+    return jsonify({'response': response_text})  # Restore this line
 
 @app.route('/Character_cards')
 def Character_cards():
@@ -260,5 +263,6 @@ def about_us():
 #     # Respond to the client
 #     return jsonify({"message": "Changes saved successfully!"})
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
+
