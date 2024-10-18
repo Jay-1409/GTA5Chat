@@ -10,6 +10,8 @@ from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import os
 from urllib.parse import quote
 import pickle
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 #global vars
 eemail=''
@@ -36,6 +38,14 @@ login_manager.login_message_category = 'info'
 
 # Configure the Gemini API
 genai.configure(api_key="AIzaSyAdhHba59C82frkiMmR0U1a5YzfFuYm8DM")  # Replace with your actual API key
+
+# Initializing the limiter
+limiter = Limiter(
+    get_remote_address,
+    default_limits=["5 per minute"]  # Set your desired rate limit here
+)
+
+limiter.init_app(app)
 
 # Define characters
 characters = {
@@ -182,6 +192,7 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
+@limiter.limit("5 per minute") #The limiter
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -260,5 +271,6 @@ def about_us():
 #     # Respond to the client
 #     return jsonify({"message": "Changes saved successfully!"})
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+     app.run(debug=True)
+
