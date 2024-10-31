@@ -12,6 +12,10 @@ from urllib.parse import quote
 import pickle
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from dotenv import load_dotenv, dotenv_values 
+
+#load env variables
+load_dotenv() 
 
 #global vars
 eemail=''
