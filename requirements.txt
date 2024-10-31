@@ -9,3 +9,4 @@ Gunicorn
 Werkzeug>=2.2.2
 email_validator
 Flask-Limiter
+python-dotenv
